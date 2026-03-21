@@ -1,51 +1,68 @@
+Here's a simple Matrix rain splash page with "RENDO" centered:
+
+```html
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-
-    <title>3D Art Gallery</title>
-
-    <link rel="stylesheet" href="./style.css">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>rendo</title>
+  <style>
+    body, html { height:100%; margin:0; overflow:hidden; background:black; }
+    canvas { display:block; }
+    #text {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      color: #0f0;
+      font-family: 'Courier New', monospace;
+      font-size: 120px;
+      font-weight: bold;
+      text-shadow: 0 0 10px #0f0;
+      pointer-events: none;
+      z-index: 10;
+      letter-spacing: 8px;
+    }
+  </style>
 </head>
-
 <body>
-    <div id="menu">
+  <canvas id="c"></canvas>
+  <div id="text">RENDO</div>
 
-        <div id="img_container">
-            <div id="starry_night_bg"></div>
-        </div>
-        <div id="content_container">
-            <div id="content">
-                <div class="title">
-                    <h1 class="stroke">3D Art Gallery</h1>
-                    <h1 class="main">3D Art Gallery</h1>
-                </div>
-                <div>
-                    <p>This is an interactive 3D gallery.</p>
-                    <p>Made with Three.js</p>
-                </div>
-                <div>
-                    <p class="instructions">Instructions:</p>
-                    <p>Arrow Keys or W/A/S/D to Move Around</p>
-                    <p>Mouse to Look Around</p>
-                </div>
-                <div id="play_button">
-                    <p>EXPLORE ART</p>
-                </div>
-            </div>
-        </div>
-    </div>
+  <script>
+    const c = document.getElementById('c');
+    const ctx = c.getContext('2d');
+    c.height = window.innerHeight;
+    c.width = window.innerWidth;
 
-    <div id="audio_controls">
-        <button id="start_audio">Start Audio Guide</button>
-        <button id="stop_audio">Stop Audio Guide</button>
-    </div>
+    const matrix = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}".split("");
+    const fontSize = 14;
+    const cols = c.width / fontSize;
+    const drops = Array(Math.floor(cols)).fill(1);
 
-    <div id="painting-info"></div>
+    function draw() {
+      ctx.fillStyle = 'rgba(0,0,0,0.04)';
+      ctx.fillRect(0,0,c.width,c.height);
+      ctx.fillStyle = '#0f0';
+      ctx.font = fontSize + 'px monospace';
 
-    <script type="module" src="/main.js"></script>
+      for (let i = 0; i < drops.length; i++) {
+        const txt = matrix[Math.floor(Math.random()*matrix.length)];
+        ctx.fillText(txt, i*fontSize, drops[i]*fontSize);
+        if (drops[i]*fontSize > c.height && Math.random() > 0.975) drops[i] = 0;
+        drops[i]++;
+      }
+    }
+
+    setInterval(draw, 35);
+
+    window.addEventListener('resize', () => {
+      c.height = window.innerHeight;
+      c.width = window.innerWidth;
+    });
+  </script>
 </body>
-
 </html>
+```
+
+Save as `index.html` → push to your GitHub repo root (or gh-pages branch). Done.
