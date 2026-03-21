@@ -31,29 +31,32 @@
       top: 50%; left: 50%;
       transform: translate(-50%, -50%);
       display: none;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
       z-index: 5;
-      width: 80%; max-width: 900px;
+      pointer-events: none;
     }
-    #gallery img {
-      width: 100%; height: auto;
+    .draggable {
+      position: absolute;
+      cursor: move;
+      user-select: none;
+      pointer-events: auto;
+      resize: both;
+      overflow: auto;
+      min-width: 100px;
+      min-height: 100px;
       border: 2px solid #0f0;
       box-shadow: 0 0 15px #0f0;
+    }
+    .draggable img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      pointer-events: none;
     }
   </style>
 </head>
 <body>
   <canvas id="c"></canvas>
   <div id="text">RENDO</div>
-  <div id="gallery">
-    <img src="pictures/1.jpg" alt="Victoria Justice">
-    <img src="pictures/2.jpg" alt="Poppy">
-    <img src="pictures/3.jpg" alt="Mia Goth">
-    <img src="pictures/4.jpg" alt="Courtney LaPlante">
-    <img src="pictures/5.jpg" alt="Emily Ratajwoski">
-    <img src="pictures/6.jpg" alt="Addison Rae">
-  </div>
+  <div id="gallery"></div>
 
   <script>
     const c = document.getElementById('c');
@@ -87,16 +90,67 @@
       c.width = window.innerWidth;
     });
 
+    // Easter egg + draggable/resizable images from /pictures/
     let typed = '';
     document.addEventListener('keydown', e => {
-      typed += e.key;
+      typed += e.key.toLowerCase();
       if (typed.length > 4) typed = typed.slice(-4);
       if (typed === '1337') {
         document.getElementById('text').classList.add('shifted');
-        document.getElementById('gallery').style.display = 'grid';
+        const gallery = document.getElementById('gallery');
+        gallery.style.display = 'block';
+
+        if (gallery.children.length === 0) {
+          for (let i = 1; i <= 6; i++) {
+            const div = document.createElement('div');
+            div.className = 'draggable';
+            div.style.left = (20 + (i-1) * 220) + 'px';
+            div.style.top  = (100 + ((i-1) % 3) * 220) + 'px';
+            div.style.width = '200px';
+            div.style.height = '200px';
+
+            const img = document.createElement('img');
+            img.src = `./pictures/${i}.jpg`;
+            div.appendChild(img);
+
+            makeDraggable(div);
+            gallery.appendChild(div);
+          }
+        }
+
         typed = '';
       }
     });
+
+    function makeDraggable(el) {
+      let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+      el.onmousedown = dragMouseDown;
+
+      function dragMouseDown(e) {
+        e = e || window.event;
+        e.preventDefault();
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        document.onmouseup = closeDrag;
+        document.onmousemove = elementDrag;
+      }
+
+      function elementDrag(e) {
+        e = e || window.event;
+        e.preventDefault();
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        el.style.top  = (el.offsetTop  - pos2) + "px";
+        el.style.left = (el.offsetLeft - pos1) + "px";
+      }
+
+      function closeDrag() {
+        document.onmouseup = null;
+        document.onmousemove = null;
+      }
+    }
   </script>
 </body>
 </html>
