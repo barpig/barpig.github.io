@@ -22,33 +22,24 @@
       transition: all 1s ease;
     }
     #text.shifted {
-      top: 95%; left: 92%;
+      top: 92%; left: 88%;
       transform: translate(-50%, -50%);
-      font-size: 40px;
+      font-size: 60px;
     }
     #gallery {
       position: absolute;
-      inset: 0;
-      margin: auto;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
       display: none;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 20px;
       z-index: 5;
-      width: 94%;
-      height: 90%;
-      max-width: 1600px;
-      padding: 40px 20px;
-      box-sizing: border-box;
-      overflow-y: auto;
+      width: 80%; max-width: 900px;
     }
     #gallery img {
-      width: 100%;
-      height: auto;
-      max-height: 85vh;
-      object-fit: contain;
+      width: 100%; height: auto;
       border: 2px solid #0f0;
       box-shadow: 0 0 15px #0f0;
-      background: black;
     }
   </style>
 </head>
