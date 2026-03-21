@@ -47,12 +47,12 @@
   <canvas id="c"></canvas>
   <div id="text">RENDO</div>
   <div id="gallery">
-    <img src="https://picsum.photos/300/300?random=1" alt="easter1">
-    <img src="https://picsum.photos/300/300?random=2" alt="easter2">
-    <img src="https://picsum.photos/300/300?random=3" alt="easter3">
-    <img src="https://picsum.photos/300/300?random=4" alt="easter4">
-    <img src="https://picsum.photos/300/300?random=5" alt="easter5">
-    <img src="https://picsum.photos/300/300?random=6" alt="easter6">
+    <img src="pictures/1.jpg" alt="Victoria Justice">
+    <img src="pictures/2.jpg" alt="pic2">
+    <img src="pictures/3.jpg" alt="pic3">
+    <img src="pictures/4.jpg" alt="pic4">
+    <img src="pictures/5.jpg" alt="pic5">
+    <img src="pictures/6.jpg" alt="pic6">
   </div>
 
   <script>
@@ -87,16 +87,14 @@
       c.width = window.innerWidth;
     });
 
-    // Easter egg
     let typed = '';
     document.addEventListener('keydown', e => {
-      typed += e.key.toLowerCase();
+      typed += e.key;
       if (typed.length > 4) typed = typed.slice(-4);
       if (typed === '1337') {
-        const text = document.getElementById('text');
-        text.classList.add('shifted');
+        document.getElementById('text').classList.add('shifted');
         document.getElementById('gallery').style.display = 'grid';
-        typed = ''; // reset
+        typed = '';
       }
     });
   </script>
