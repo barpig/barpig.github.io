@@ -22,27 +22,29 @@
       transition: all 1s ease;
     }
     #text.shifted {
-      top: 94%; left: 90%;
+      top: 95%; left: 92%;
       transform: translate(-50%, -50%);
-      font-size: 48px;
+      font-size: 40px;
     }
     #gallery {
       position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
+      inset: 0;
+      margin: auto;
       display: none;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
       z-index: 5;
-      width: 90%;
-      max-width: 1200px;
-      padding: 20px;
+      width: 94%;
+      height: 90%;
+      max-width: 1600px;
+      padding: 40px 20px;
       box-sizing: border-box;
+      overflow-y: auto;
     }
     #gallery img {
       width: 100%;
       height: auto;
-      max-height: 80vh;
+      max-height: 85vh;
       object-fit: contain;
       border: 2px solid #0f0;
       box-shadow: 0 0 15px #0f0;
