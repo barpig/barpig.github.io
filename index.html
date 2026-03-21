@@ -19,12 +19,41 @@
       pointer-events: none;
       z-index: 10;
       letter-spacing: 8px;
+      transition: all 1s ease;
+    }
+    #text.shifted {
+      top: 92%; left: 88%;
+      transform: translate(-50%, -50%);
+      font-size: 60px;
+    }
+    #gallery {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      display: none;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      z-index: 5;
+      width: 80%; max-width: 900px;
+    }
+    #gallery img {
+      width: 100%; height: auto;
+      border: 2px solid #0f0;
+      box-shadow: 0 0 15px #0f0;
     }
   </style>
 </head>
 <body>
   <canvas id="c"></canvas>
   <div id="text">RENDO</div>
+  <div id="gallery">
+    <img src="https://picsum.photos/300/300?random=1" alt="easter1">
+    <img src="https://picsum.photos/300/300?random=2" alt="easter2">
+    <img src="https://picsum.photos/300/300?random=3" alt="easter3">
+    <img src="https://picsum.photos/300/300?random=4" alt="easter4">
+    <img src="https://picsum.photos/300/300?random=5" alt="easter5">
+    <img src="https://picsum.photos/300/300?random=6" alt="easter6">
+  </div>
 
   <script>
     const c = document.getElementById('c');
@@ -56,6 +85,19 @@
     window.addEventListener('resize', () => {
       c.height = window.innerHeight;
       c.width = window.innerWidth;
+    });
+
+    // Easter egg
+    let typed = '';
+    document.addEventListener('keydown', e => {
+      typed += e.key.toLowerCase();
+      if (typed.length > 4) typed = typed.slice(-4);
+      if (typed === '1337') {
+        const text = document.getElementById('text');
+        text.classList.add('shifted');
+        document.getElementById('gallery').style.display = 'grid';
+        typed = ''; // reset
+      }
     });
   </script>
 </body>
