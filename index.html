@@ -26,34 +26,29 @@
       transform: translate(-50%, -50%);
       font-size: 60px;
     }
-    #gallery {
+    .pic {
       position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
       display: none;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      z-index: 5;
-      width: 80%; max-width: 900px;
-    }
-    #gallery img {
-      width: 100%; height: auto;
+      width: 220px;
+      height: auto;
       border: 2px solid #0f0;
       box-shadow: 0 0 15px #0f0;
+      cursor: move;
+      user-select: none;
+      z-index: 5;
     }
   </style>
 </head>
 <body>
   <canvas id="c"></canvas>
   <div id="text">RENDO</div>
-  <div id="gallery">
-    <img src="pictures/1.jpg" alt="Victoria Justice">
-    <img src="pictures/2.jpg" alt="Emily Ratajwoski">
-    <img src="pictures/3.jpg" alt="Mia Goth">
-    <img src="pictures/4.jpg" alt="Courtney LaPlante">
-    <img src="pictures/5.jpg" alt="Poppy">
-    <img src="pictures/6.jpg" alt="Addison Rae">
-  </div>
+
+  <img class="pic" src="pictures/1.jpg" style="top:20%;left:15%;">
+  <img class="pic" src="pictures/2.jpg" style="top:25%;left:40%;">
+  <img class="pic" src="pictures/3.jpg" style="top:30%;left:65%;">
+  <img class="pic" src="pictures/4.jpg" style="top:55%;left:10%;">
+  <img class="pic" src="pictures/5.jpg" style="top:60%;left:35%;">
+  <img class="pic" src="pictures/6.jpg" style="top:65%;left:60%;">
 
   <script>
     const c = document.getElementById('c');
@@ -71,7 +66,6 @@
       ctx.fillRect(0,0,c.width,c.height);
       ctx.fillStyle = '#0f0';
       ctx.font = fontSize + 'px monospace';
-
       for (let i = 0; i < drops.length; i++) {
         const txt = matrix[Math.floor(Math.random()*matrix.length)];
         ctx.fillText(txt, i*fontSize, drops[i]*fontSize);
@@ -79,7 +73,6 @@
         drops[i]++;
       }
     }
-
     setInterval(draw, 35);
 
     window.addEventListener('resize', () => {
@@ -87,16 +80,53 @@
       c.width = window.innerWidth;
     });
 
+    // Easter egg + draggable/resizable
     let typed = '';
     document.addEventListener('keydown', e => {
       typed += e.key;
       if (typed.length > 4) typed = typed.slice(-4);
       if (typed === '1337') {
         document.getElementById('text').classList.add('shifted');
-        document.getElementById('gallery').style.display = 'grid';
+        document.querySelectorAll('.pic').forEach(img => {
+          img.style.display = 'block';
+          makeDraggable(img);
+          makeResizable(img);
+        });
         typed = '';
       }
     });
+
+    function makeDraggable(el) {
+      let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+      el.onmousedown = dragMouseDown;
+      function dragMouseDown(e) {
+        e.preventDefault();
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        document.onmouseup = closeDrag;
+        document.onmousemove = elementDrag;
+      }
+      function elementDrag(e) {
+        e.preventDefault();
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        el.style.top = (el.offsetTop - pos2) + "px";
+        el.style.left = (el.offsetLeft - pos1) + "px";
+      }
+      function closeDrag() {
+        document.onmouseup = null;
+        document.onmousemove = null;
+      }
+    }
+
+    function makeResizable(el) {
+      el.addEventListener('dblclick', () => {
+        const currentW = parseInt(el.style.width) || 220;
+        el.style.width = (currentW === 220 ? 440 : 220) + 'px';
+      });
+    }
   </script>
 </body>
 </html>
