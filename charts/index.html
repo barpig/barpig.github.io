@@ -1,0 +1,535 @@
+<html>
+
+	<head>
+<link rel="manifest" href="/manifest.json">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#0A1C28">
+<meta name="description" content="Interactive trading charts for rendo.club">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+		<meta charset="UTF-8" />
+		<title>charts.rendo.club</title>
+		<script>
+			function getParameter ( parameterName ){
+				let parameters = new URLSearchParams ( window.location.search);
+				return parameters.get( parameterName );
+			}
+		</script>
+		<script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+		<script type="text/javascript">
+			window.tv_charts = [];
+			window.tv_interval = "D";
+			window.tv_style = "1";
+			
+			window.tv_refresh = function() {
+				window.tv_charts.forEach(function(e) {
+				  e.options.interval = window.tv_interval;
+
+				  if( e.options.style != '3' ) { 
+				  	e.options.style = window.tv_style;
+				  }
+					
+				  e.reload();
+				});	
+			}
+			
+			window.setInterval = function(val) {
+				window.updateActiveState(window.tv_interval, val, 'interval');
+				window.tv_interval = val;
+				window.tv_refresh();
+			}
+			
+			window.setStyle = function(val) {
+				window.updateActiveState(window.tv_style, val, 'style');
+				window.tv_style = val;
+				window.tv_refresh();	
+			}
+			
+			window.updateActiveState = function(oldState, newState, type) {	
+				if( oldState != null ) {
+					document.getElementById("is-" + type + "-" + oldState).classList.remove('active');
+				}
+				document.getElementById("is-" + type + "-" + newState).classList.add('active');
+			}
+			
+			window.init = function() {
+				window.updateActiveState(null, window.tv_interval, 'interval');
+				window.updateActiveState(null, window.tv_style, 'style');
+			}
+			
+			
+			
+			
+/* Charts */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+
+
+
+
+
+		</script>
+		<style>
+			body, html {
+				padding: 0;
+				margin: 0;
+				font-family: 'fontawesome', Calibri, Arial, sans-serif;
+				color: #666;
+				background: #111;
+				min-height: 800px;
+			}
+			*,
+			*:after,
+			*:before {
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				box-sizing: border-box;
+			}
+			.grid {
+				display: grid;
+				grid-template-columns: 1fr 1fr 1fr 1fr;
+				grid-template-rows: 25px 1fr 1fr 1fr;
+				
+				min-height: 100vh;
+				width: 100vw;
+			}
+			.controls {
+				grid-column-start: 1;
+				grid-column-end: 4;
+				background: #0A1C28;
+				
+				display: flex;
+				
+				align-items: center;
+				justify-content: center;
+			}
+			
+			.ctrl-btn {
+				margin: 5px 5px;
+				padding: 2px 15px;
+				background: #EEE9D1;
+				border: none; 
+				color: #41848F;
+				cursor: pointer;
+			}
+			
+			.ctrl-btn.active {
+				background: #41848F;
+				color: #EEE9D1;
+			}
+			
+			.ctrl-btn:hover {
+				background: #97C0B7;	
+				color: #fff;
+			}
+			
+			.ctrls-interval, .ctrls-style {
+				padding: 0 25px;
+				flex: 0 0 auto;	
+			}
+			
+
+
+
+/* Charts */
+.dropbtn {
+  background-color: #41848F;
+  color: #EEE9D1;
+  padding: 2px 15px;
+  font-size: 12px;
+  border: none;
+  cursor: pointer;}
+
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #97C0B7;}
+
+.dropdown {
+  position: relative;
+  display: inline-block;}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #41848F;
+  min-width: 850px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;}
+  
+.dropdown-content a:hover {background-color: #97C0B7}
+.show {display:block;}
+
+
+
+
+
+		</style>
+		<!-- Google Tag Manager -->
+		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+		})(window,document,'script','dataLayer','GTM-MFMC3XM');</script>
+		<!-- End Google Tag Manager -->
+	</head>
+	<body onload="window.init();">
+		<!-- Google Tag Manager (noscript) -->
+		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MFMC3XM"
+		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+		<!-- End Google Tag Manager (noscript) -->
+		<div class="container">	
+			<div class="grid">
+				<div class="controls">
+						<div class="ctrls-style">
+						<button id="is-style-1" class="ctrl-btn interval" onclick="window.setStyle('1')">Candles</button>
+						<button id="is-style-8" class="ctrl-btn interval" onclick="window.setStyle('8')">HeikinAshi</button>
+					</div>
+					<div class="ctrls-interval">
+						<button id="is-interval-1" class="ctrl-btn interval" onclick="window.setInterval('1')">1m</button>
+						<button id="is-interval-5" class="ctrl-btn interval" onclick="window.setInterval('5')">5m</button>
+						<button id="is-interval-15" class="ctrl-btn interval" onclick="window.setInterval('15')">15m</button>
+						<button id="is-interval-30" class="ctrl-btn interval" onclick="window.setInterval('30')">30m</button>
+						<button id="is-interval-45" class="ctrl-btn interval" onclick="window.setInterval('45')">45m</button>
+						<button id="is-interval-60" class="ctrl-btn interval" onclick="window.setInterval('60')">1h</button>
+						<button id="is-interval-120" class="ctrl-btn interval" onclick="window.setInterval('120')">2h</button>
+						<button id="is-interval-240" class="ctrl-btn interval" onclick="window.setInterval('240')">4h</button>
+						<button id="is-interval-D" class="ctrl-btn interval" onclick="window.setInterval('D')">Day</button>
+						<button id="is-interval-W" class="ctrl-btn interval" onclick="window.setInterval('W')">Week</button>
+						<button id="is-interval-M" class="ctrl-btn interval" onclick="window.setInterval('M')">Month</button>
+					</div>
+				</div>
+				<article class="module">
+						<script type="text/javascript">
+						window.tv_charts.push( new TradingView.widget({
+						  "autosize": true,
+						  "symbol": "RENDO.CLUB",
+						  "interval": window.tv_interval,
+						  "timezone": "America/New_York",
+						  "theme": "Dark",
+						  "style": window.tv_style,
+						  "locale": "en",
+						  "toolbar_bg": "rgba(0, 0, 0, 1)",
+						  "enable_publishing": false,
+						  "hide_top_toolbar": true,
+						  "allow_symbol_change": true,
+						  "hide_volume": true,
+						  "save_image": false,
+						  "hideideas": true
+						}));
+						</script>
+				</article>
+
+				<article class="module">
+						<script type="text/javascript">
+						window.tv_charts.push( new TradingView.widget({
+						  "autosize": true,
+						  "symbol": getParameter ('1'),
+						  "interval": window.tv_interval,
+						  "timezone": "America/New_York",
+						  "theme": "Dark",
+						  "style": window.tv_style,
+						  "locale": "en",
+						  "toolbar_bg": "rgba(0, 0, 0, 1)",
+						  "enable_publishing": false,
+						  "hide_top_toolbar": true,
+						  "allow_symbol_change": true,
+						  "hide_volume": true,
+						  "studies": [
+						  "BB@tv-basicstudies","LinearRegression@tv-basicstudies"],
+						  "save_image": false,
+						  "hideideas": true
+						}));
+						</script>
+				</article>
+
+				<article class="module">
+						<script type="text/javascript">
+						window.tv_charts.push( new TradingView.widget({
+						  "autosize": true,
+						  "symbol": getParameter ('2'),
+						  "interval": window.tv_interval,
+						  "timezone": "America/New_York",
+						  "theme": "Dark",
+						  "style": window.tv_style,
+						  "locale": "en",
+						  "toolbar_bg": "rgba(0, 0, 0, 1)",
+						  "enable_publishing": false,
+						  "hide_top_toolbar": true,
+						  "allow_symbol_change": true,
+						  "hide_volume": true,
+						  "studies": [
+						  "BB@tv-basicstudies","LinearRegression@tv-basicstudies"],
+						  "save_image": false,
+						  "hideideas": true
+						}));
+						</script>
+				</article>
+
+				<article class="module">
+						<script type="text/javascript">
+						window.tv_charts.push( new TradingView.widget({
+						  "autosize": true,
+						  "symbol": getParameter ('3'),
+						  "interval": window.tv_interval,
+						  "timezone": "America/New_York",
+						  "theme": "Dark",
+						  "style": window.tv_style,
+						  "locale": "en",
+						  "toolbar_bg": "rgba(0, 0, 0, 1)",
+						  "enable_publishing": false,
+						  "hide_top_toolbar": true,
+						  "allow_symbol_change": true,
+						  "hide_volume": true,
+						  "studies": [
+						  "BB@tv-basicstudies","LinearRegression@tv-basicstudies"],
+						  "save_image": false,
+						  "hideideas": true
+						}));
+						</script>
+				</article>
+
+				<article class="module">
+						<script type="text/javascript">
+						window.tv_charts.push( new TradingView.widget({
+						  "autosize": true,
+						  "symbol": getParameter ('4'),
+						  "interval": window.tv_interval,
+						  "timezone": "America/New_York",
+						  "theme": "Dark",
+						  "style": window.tv_style,
+						  "locale": "en",
+						  "toolbar_bg": "rgba(0, 0, 0, 1)",
+						  "enable_publishing": false,
+						  "hide_top_toolbar": true,
+						  "allow_symbol_change": true,
+						  "hide_volume": true,
+						  "studies": [
+						  "BB@tv-basicstudies","LinearRegression@tv-basicstudies"],
+						  "save_image": false,
+						  "hideideas": true
+						}));
+						</script>
+				</article>
+
+				<article class="module">
+						<script type="text/javascript">
+						window.tv_charts.push( new TradingView.widget({
+						  "autosize": true,
+						  "symbol": getParameter ('5'),
+						  "interval": window.tv_interval,
+						  "timezone": "America/New_York",
+						  "theme": "Dark",
+						  "style": window.tv_style,
+						  "locale": "en",
+						  "toolbar_bg": "rgba(0, 0, 0, 1)",
+						  "enable_publishing": false,
+						  "hide_top_toolbar": true,
+						  "allow_symbol_change": true,
+						  "hide_volume": true,
+						  "studies": [
+						  "BB@tv-basicstudies","LinearRegression@tv-basicstudies"],
+						  "save_image": false,
+						  "hideideas": true
+						}));
+						</script>
+				</article>
+
+				<article class="module">
+						<script type="text/javascript">
+						window.tv_charts.push( new TradingView.widget({
+						  "autosize": true,
+						  "symbol": getParameter ('6'),
+						  "interval": window.tv_interval,
+						  "timezone": "America/New_York",
+						  "theme": "Dark",
+						  "style": window.tv_style,
+						  "locale": "en",
+						  "toolbar_bg": "rgba(0, 0, 0, 1)",
+						  "enable_publishing": false,
+						  "hide_top_toolbar": true,
+						  "allow_symbol_change": true,
+						  "hide_volume": true,
+						  "studies": [
+						  "BB@tv-basicstudies","LinearRegression@tv-basicstudies"],
+						  "save_image": false,
+						  "hideideas": true
+						}));
+						</script>
+				</article>
+
+				<article class="module">
+						<script type="text/javascript">
+						window.tv_charts.push( new TradingView.widget({
+						  "autosize": true,
+						  "symbol": getParameter ('7'),
+						  "interval": window.tv_interval,
+						  "timezone": "America/New_York",
+						  "theme": "Dark",
+						  "style": window.tv_style,
+						  "locale": "en",
+						  "toolbar_bg": "rgba(0, 0, 0, 1)",
+						  "enable_publishing": false,
+						  "hide_top_toolbar": true,
+						  "allow_symbol_change": true,
+						  "hide_volume": true,
+						  "studies": [
+						  "BB@tv-basicstudies","LinearRegression@tv-basicstudies"],
+						  "save_image": false,
+						  "hideideas": true
+						}));
+						</script>
+				</article>
+
+				<article class="module">
+						<script type="text/javascript">
+						window.tv_charts.push( new TradingView.widget({
+						  "autosize": true,
+						  "symbol": getParameter ('8'),
+						  "interval": window.tv_interval,
+						  "timezone": "America/New_York",
+						  "theme": "Dark",
+						  "style": window.tv_style,
+						  "locale": "en",
+						  "toolbar_bg": "rgba(0, 0, 0, 1)",
+						  "enable_publishing": false,
+						  "hide_top_toolbar": true,
+						  "allow_symbol_change": true,
+						  "hide_volume": true,
+						  "studies": [
+						  "BB@tv-basicstudies","LinearRegression@tv-basicstudies"],
+						  "save_image": false,
+						  "hideideas": true
+						}));
+						</script>
+				</article>
+
+				<article class="module">
+						<script type="text/javascript">
+						window.tv_charts.push( new TradingView.widget({
+						  "autosize": true,
+						  "symbol": getParameter ('9'),
+						  "interval": window.tv_interval,
+						  "timezone": "America/New_York",
+						  "theme": "Dark",
+						  "style": window.tv_style,
+						  "locale": "en",
+						  "toolbar_bg": "rgba(0, 0, 0, 1)",
+						  "enable_publishing": false,
+						  "hide_top_toolbar": true,
+						  "allow_symbol_change": true,
+						  "hide_volume": true,
+						  "studies": [
+						  "BB@tv-basicstudies","LinearRegression@tv-basicstudies"],
+						  "save_image": false,
+						  "hideideas": true
+						}));
+						</script>
+				</article>
+
+				<article class="module">
+						<script type="text/javascript">
+						window.tv_charts.push( new TradingView.widget({
+						  "autosize": true,
+						  "symbol": getParameter ('10'),
+						  "interval": window.tv_interval,
+						  "timezone": "America/New_York",
+						  "theme": "Dark",
+						  "style": window.tv_style,
+						  "locale": "en",
+						  "toolbar_bg": "rgba(0, 0, 0, 1)",
+						  "enable_publishing": false,
+						  "hide_top_toolbar": true,
+						  "allow_symbol_change": true,
+						  "hide_volume": true,
+						  "studies": [
+						  "BB@tv-basicstudies","LinearRegression@tv-basicstudies"],
+						  "save_image": false,
+						  "hideideas": true
+						}));
+						</script>
+				</article>
+
+				<article class="module">
+						<script type="text/javascript">
+						window.tv_charts.push( new TradingView.widget({
+						  "autosize": true,
+						  "symbol": getParameter ('11'),
+						  "interval": window.tv_interval,
+						  "timezone": "America/New_York",
+						  "theme": "Dark",
+						  "style": window.tv_style,
+						  "locale": "en",
+						  "toolbar_bg": "rgba(0, 0, 0, 1)",
+						  "enable_publishing": false,
+						  "hide_top_toolbar": true,
+						  "allow_symbol_change": true,
+						  "hide_volume": true,
+						  "studies": [
+						  "BB@tv-basicstudies","LinearRegression@tv-basicstudies"],
+						  "save_image": false,
+						  "hideideas": true
+						}));
+						</script>
+				</article>
+
+				<article class="module">
+						<script type="text/javascript">
+						window.tv_charts.push( new TradingView.widget({
+						  "autosize": true,
+						  "symbol": getParameter ('12'),
+						  "interval": window.tv_interval,
+						  "timezone": "America/New_York",
+						  "theme": "Dark",
+						  "style": window.tv_style,
+						  "locale": "en",
+						  "toolbar_bg": "rgba(0, 0, 0, 1)",
+						  "enable_publishing": false,
+						  "hide_top_toolbar": true,
+						  "allow_symbol_change": true,
+						  "hide_volume": true,
+						  "studies": [
+						  "BB@tv-basicstudies","LinearRegression@tv-basicstudies"],
+						  "save_image": false,
+						  "hideideas": true
+						}));
+						</script>
+				</article>
+			</div>
+		</div> 
+	<script>
+		window.init();	
+	</script>
+	<script>
+		if ('serviceWorker' in navigator) {
+		  window.addEventListener('load', () => {
+			navigator.serviceWorker.register('/sw.js')
+			  .then(registration => {
+				console.log('Service Worker registered with scope:', registration.scope);
+			  })
+			  .catch(error => {
+				console.error('Service Worker registration failed:', error);
+			  });
+		  });
+		}
+	  </script>
+	</body>
+</html>

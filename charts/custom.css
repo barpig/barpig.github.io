@@ -1,0 +1,9 @@
+/* Target the header area of the TradingView widget */
+.tv-header {
+  display: none !important;
+}
+
+/* Alternatively, target the specific container if the above doesn't work */
+.tv-chart-container .tv-header {
+  display: none !important;
+}

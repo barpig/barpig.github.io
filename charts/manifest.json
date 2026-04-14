@@ -1,0 +1,21 @@
+{
+    "name": "charts.rendo.club",
+    "short_name": "Rendo Charts",
+    "description": "Interactive trading charts for rendo.club",
+    "start_url": "/?1=US500&2=US100&3=ETHUSDT&4=BTCUSDT&5=CAPITALCOM:DXY&6=USOIL&7=SILVER&8=GOLD&9=CADUSD&10=JPYUSD&11=GBPUSD&12=EURUSD#nav",
+    "display": "standalone",
+    "background_color": "#111",
+    "theme_color": "#0A1C28",
+    "icons": [
+      {
+        "src": "/icons/icon-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "/icons/icon-512x512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }
