@@ -26,7 +26,7 @@ h2 { text-align:center; color:#aaa; margin-bottom:30px; }
 </head>
 <body>
 <h1>Top 10 Most Liked • Last 24h</h1>
-<h2>May 24, 2026</h2>
+<h2>May 25, 2026</h2>
 <div class="grid" id="grid"></div>
 
 <div class="modal" id="modal" onclick="if(event.target===this) closeModal();">
@@ -39,16 +39,16 @@ h2 { text-align:center; color:#aaa; margin-bottom:30px; }
 
 <script>
 const posts = [
-  {img:"https://pbs.twimg.com/media/HI-AcXNW4AAyNrT.jpg", link:"https://x.com/BaddiesBae_/status/2058005023854850273", likes:3528, title:"Janie Wagner - Ohio State"},
-  {img:"https://pbs.twimg.com/media/HI_hJ_yWQAApcuH.jpg", link:"https://x.com/JumpTrailers/status/2058111207790281146", likes:3193, title:"LISA (BLACKPINK)"},
-  {img:"https://pbs.twimg.com/media/HJCaseMWMAAfKpQ.jpg", link:"https://x.com/beautifulcelebz/status/2058315120741060922", likes:2579, title:"Eiza Gonzalez"},
-  {img:"https://pbs.twimg.com/media/HI9--6ZWQAADpP8.jpg", link:"https://x.com/JumpTrailers/status/2058003176482086980", likes:2164, title:"Madelaine Petsch"},
-  {img:"https://pbs.twimg.com/media/HI97e14WgAAv-FL.jpg", link:"https://x.com/JumpTrailers/status/2057999329374146621", likes:1993, title:"Sophie Thatcher"},
-  {img:"https://pbs.twimg.com/media/HJBXlWOX0AESzW1.jpg", link:"https://x.com/beautifulcelebz/status/2058241331164553272", likes:1637, title:"LISA"},
-  {img:"https://pbs.twimg.com/media/HI-1GMkXgAAu1Ox.jpg", link:"https://x.com/JumpTrailers/status/2058062703332139329", likes:1530, title:"Mckenna Grace"},
-  {img:"https://pbs.twimg.com/media/HJCLkotXsAAF2qG.jpg", link:"https://x.com/beautifulcelebz/status/2058298493815447654", likes:1216, title:"Ana de Armas"},
-  {img:"https://pbs.twimg.com/media/HItBwZ1WcAAlpe2.jpg", link:"https://x.com/PinnacleTrends/status/2058125786440442323", likes:1028, title:"Ashley Roberts"},
-  {img:"https://pbs.twimg.com/media/HJDKbB8W0AEk9E7.jpg", link:"https://x.com/BaddiesBae_/status/2058367629438443754", likes:860, title:"Sadie Willett - Penn State"}
+  {img:"https://pbs.twimg.com/media/HJDMZ2FXAAAkz6A.jpg", link:"https://x.com/JumpTrailers/status/2058370269048168634", likes:871, title:"Inde Navarrette"},
+  {img:"https://pbs.twimg.com/media/HJDMbi2WcAAz6dA.jpg", link:"https://x.com/JumpTrailers/status/2058370269048168634", likes:871, title:"Inde Navarrette"},
+  {img:"https://pbs.twimg.com/media/HJG7JtWWcAEs2Mt.jpg", link:"https://x.com/JumpTrailers/status/2058632282450051238", likes:650, title:"Daniela Melchior"},
+  {img:"https://pbs.twimg.com/media/HJG7Jr6W8AAUIBE.jpg", link:"https://x.com/JumpTrailers/status/2058632282450051238", likes:650, title:"Daniela Melchior"},
+  {img:"https://pbs.twimg.com/media/HJHPeWtXkAAYR2P.jpg", link:"https://x.com/JumpTrailers/status/2058654854004789534", likes:170, title:"Hailey Bieber"},
+  {img:"https://pbs.twimg.com/media/HJHPmDRWUAAMniW.jpg", link:"https://x.com/JumpTrailers/status/2058654854004789534", likes:170, title:"Hailey Bieber"},
+  {img:"https://pbs.twimg.com/media/HJD4OGWXUAANu9m.jpg", link:"https://x.com/Pawe66862800/status/2058418045312208952", likes:148, title:"Bianca Censori"},
+  {img:"https://pbs.twimg.com/media/HJD4QM-XsAAFMir.jpg", link:"https://x.com/Pawe66862800/status/2058418045312208952", likes:148, title:"Kanye West & Bianca Censori"},
+  {img:"https://pbs.twimg.com/media/HJHmzMgWwAAfBCe.jpg", link:"https://x.com/Kevin10919728/status/2058680363514290565", likes:158, title:"Danica Patrick"},
+  {img:"https://pbs.twimg.com/media/HJDBh6rXYAA2HeJ.jpg", link:"https://x.com/JumpTrailers/status/2058358901527945537", likes:146, title:"ROSÉ"}
 ];
 
 const grid = document.getElementById('grid');
