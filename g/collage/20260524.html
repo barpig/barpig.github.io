@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Top 10 Last 24h</title>
+<style>
+body { background:#0f0f0f; color:#ddd; font-family:Arial, sans-serif; margin:0; padding:20px; }
+h1 { text-align:center; color:#fff; }
+h2 { text-align:center; color:#aaa; margin-bottom:30px; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:16px; }
+.card { background:#1a1a1a; border-radius:12px; overflow:hidden; box-shadow:0 4px 12px rgba(0,0,0,0.5); transition:transform 0.2s; cursor:pointer; }
+.card:hover { transform:scale(1.03); }
+.card img { width:100%; height:auto; display:block; }
+.info { padding:12px; text-align:center; }
+.info a { color:#aaa; text-decoration:none; font-size:14px; }
+.info a:hover { color:#fff; }
+
+/* Modal */
+.modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:1000; align-items:center; justify-content:center; }
+.modal-content { max-width:90%; max-height:90%; position:relative; }
+.modal img { max-width:100%; max-height:90vh; border-radius:12px; }
+.modal-info { text-align:center; margin-top:15px; }
+.modal-info a { color:#aaa; font-size:16px; }
+.close { position:absolute; top:-45px; right:0; font-size:40px; color:#fff; cursor:pointer; }
+</style>
+</head>
+<body>
+<h1>Top 10 Most Liked • Last 24h</h1>
+<h2>May 24, 2026</h2>
+<div class="grid" id="grid"></div>
+
+<div class="modal" id="modal" onclick="if(event.target===this) closeModal();">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">×</span>
+    <img id="modalImg" src="">
+    <div class="modal-info" id="modalInfo"></div>
+  </div>
+</div>
+
+<script>
+const posts = [
+  {img:"https://pbs.twimg.com/media/HI-AcXNW4AAyNrT.jpg", link:"https://x.com/BaddiesBae_/status/2058005023854850273", likes:3528, title:"Janie Wagner - Ohio State"},
+  {img:"https://pbs.twimg.com/media/HI_hJ_yWQAApcuH.jpg", link:"https://x.com/JumpTrailers/status/2058111207790281146", likes:3193, title:"LISA (BLACKPINK)"},
+  {img:"https://pbs.twimg.com/media/HJCaseMWMAAfKpQ.jpg", link:"https://x.com/beautifulcelebz/status/2058315120741060922", likes:2579, title:"Eiza Gonzalez"},
+  {img:"https://pbs.twimg.com/media/HI9--6ZWQAADpP8.jpg", link:"https://x.com/JumpTrailers/status/2058003176482086980", likes:2164, title:"Madelaine Petsch"},
+  {img:"https://pbs.twimg.com/media/HI97e14WgAAv-FL.jpg", link:"https://x.com/JumpTrailers/status/2057999329374146621", likes:1993, title:"Sophie Thatcher"},
+  {img:"https://pbs.twimg.com/media/HJBXlWOX0AESzW1.jpg", link:"https://x.com/beautifulcelebz/status/2058241331164553272", likes:1637, title:"LISA"},
+  {img:"https://pbs.twimg.com/media/HI-1GMkXgAAu1Ox.jpg", link:"https://x.com/JumpTrailers/status/2058062703332139329", likes:1530, title:"Mckenna Grace"},
+  {img:"https://pbs.twimg.com/media/HJCLkotXsAAF2qG.jpg", link:"https://x.com/beautifulcelebz/status/2058298493815447654", likes:1216, title:"Ana de Armas"},
+  {img:"https://pbs.twimg.com/media/HItBwZ1WcAAlpe2.jpg", link:"https://x.com/PinnacleTrends/status/2058125786440442323", likes:1028, title:"Ashley Roberts"},
+  {img:"https://pbs.twimg.com/media/HJDKbB8W0AEk9E7.jpg", link:"https://x.com/BaddiesBae_/status/2058367629438443754", likes:860, title:"Sadie Willett - Penn State"}
+];
+
+const grid = document.getElementById('grid');
+posts.forEach(p => {
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.innerHTML = `<img src="${p.img}"><div class="info">${p.likes} Likes • ${p.title}</div>`;
+  card.onclick = () => openModal(p.img, p.link, p.likes, p.title);
+  grid.appendChild(card);
+});
+
+function openModal(imgSrc, link, likes, title) {
+  document.getElementById('modalImg').src = imgSrc;
+  document.getElementById('modalInfo').innerHTML = `<a href="${link}" target="_blank">${likes} Likes • ${title} → View on X</a>`;
+  document.getElementById('modal').style.display = 'flex';
+}
+
+function closeModal() {
+  document.getElementById('modal').style.display = 'none';
+}
+</script>
+</body>
+</html>
