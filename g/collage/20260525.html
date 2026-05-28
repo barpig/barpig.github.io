@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Top 10 Last 24h</title>
+<style>
+body { background:#0f0f0f; color:#ddd; font-family:Arial, sans-serif; margin:0; padding:20px; }
+h1 { text-align:center; color:#fff; }
+h2 { text-align:center; color:#aaa; margin-bottom:30px; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:16px; }
+.card { background:#1a1a1a; border-radius:12px; overflow:hidden; box-shadow:0 4px 12px rgba(0,0,0,0.5); transition:transform 0.2s; cursor:pointer; }
+.card:hover { transform:scale(1.03); }
+.card img { width:100%; height:auto; display:block; }
+.info { padding:12px; text-align:center; }
+.info a { color:#aaa; text-decoration:none; font-size:14px; }
+.info a:hover { color:#fff; }
+
+/* Modal */
+.modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:1000; align-items:center; justify-content:center; }
+.modal-content { max-width:90%; max-height:90%; position:relative; }
+.modal img { max-width:100%; max-height:90vh; border-radius:12px; }
+.modal-info { text-align:center; margin-top:15px; }
+.modal-info a { color:#aaa; font-size:16px; }
+.close { position:absolute; top:-45px; right:0; font-size:40px; color:#fff; cursor:pointer; }
+</style>
+</head>
+<body>
+<h1>Top 10 Most Liked • Last 24h</h1>
+<h2>May 25, 2026</h2>
+<div class="grid" id="grid"></div>
+
+<div class="modal" id="modal" onclick="if(event.target===this) closeModal();">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">×</span>
+    <img id="modalImg" src="">
+    <div class="modal-info" id="modalInfo"></div>
+  </div>
+</div>
+
+<script>
+const posts = [
+  {img:"https://pbs.twimg.com/media/HJDMZ2FXAAAkz6A.jpg", link:"https://x.com/JumpTrailers/status/2058370269048168634", likes:871, title:"Inde Navarrette"},
+  {img:"https://pbs.twimg.com/media/HJDMbi2WcAAz6dA.jpg", link:"https://x.com/JumpTrailers/status/2058370269048168634", likes:871, title:"Inde Navarrette"},
+  {img:"https://pbs.twimg.com/media/HJG7JtWWcAEs2Mt.jpg", link:"https://x.com/JumpTrailers/status/2058632282450051238", likes:650, title:"Daniela Melchior"},
+  {img:"https://pbs.twimg.com/media/HJG7Jr6W8AAUIBE.jpg", link:"https://x.com/JumpTrailers/status/2058632282450051238", likes:650, title:"Daniela Melchior"},
+  {img:"https://pbs.twimg.com/media/HJHPeWtXkAAYR2P.jpg", link:"https://x.com/JumpTrailers/status/2058654854004789534", likes:170, title:"Hailey Bieber"},
+  {img:"https://pbs.twimg.com/media/HJHPmDRWUAAMniW.jpg", link:"https://x.com/JumpTrailers/status/2058654854004789534", likes:170, title:"Hailey Bieber"},
+  {img:"https://pbs.twimg.com/media/HJD4OGWXUAANu9m.jpg", link:"https://x.com/Pawe66862800/status/2058418045312208952", likes:148, title:"Bianca Censori"},
+  {img:"https://pbs.twimg.com/media/HJD4QM-XsAAFMir.jpg", link:"https://x.com/Pawe66862800/status/2058418045312208952", likes:148, title:"Kanye West & Bianca Censori"},
+  {img:"https://pbs.twimg.com/media/HJHmzMgWwAAfBCe.jpg", link:"https://x.com/Kevin10919728/status/2058680363514290565", likes:158, title:"Danica Patrick"},
+  {img:"https://pbs.twimg.com/media/HJDBh6rXYAA2HeJ.jpg", link:"https://x.com/JumpTrailers/status/2058358901527945537", likes:146, title:"ROSÉ"}
+];
+
+const grid = document.getElementById('grid');
+posts.forEach(p => {
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.innerHTML = `<img src="${p.img}"><div class="info">${p.likes} Likes • ${p.title}</div>`;
+  card.onclick = () => openModal(p.img, p.link, p.likes, p.title);
+  grid.appendChild(card);
+});
+
+function openModal(imgSrc, link, likes, title) {
+  document.getElementById('modalImg').src = imgSrc;
+  document.getElementById('modalInfo').innerHTML = `<a href="${link}" target="_blank">${likes} Likes • ${title} → View on X</a>`;
+  document.getElementById('modal').style.display = 'flex';
+}
+
+function closeModal() {
+  document.getElementById('modal').style.display = 'none';
+}
+</script>
+</body>
+</html>

@@ -1,74 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<title>Top 10 Last 24h</title>
-<style>
-body { background:#0f0f0f; color:#ddd; font-family:Arial, sans-serif; margin:0; padding:20px; }
-h1 { text-align:center; color:#fff; }
-h2 { text-align:center; color:#aaa; margin-bottom:30px; }
-.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:16px; }
-.card { background:#1a1a1a; border-radius:12px; overflow:hidden; box-shadow:0 4px 12px rgba(0,0,0,0.5); transition:transform 0.2s; cursor:pointer; }
-.card:hover { transform:scale(1.03); }
-.card img { width:100%; height:auto; display:block; }
-.info { padding:12px; text-align:center; }
-.info a { color:#aaa; text-decoration:none; font-size:14px; }
-.info a:hover { color:#fff; }
-
-/* Modal */
-.modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:1000; align-items:center; justify-content:center; }
-.modal-content { max-width:90%; max-height:90%; position:relative; }
-.modal img { max-width:100%; max-height:90vh; border-radius:12px; }
-.modal-info { text-align:center; margin-top:15px; }
-.modal-info a { color:#aaa; font-size:16px; }
-.close { position:absolute; top:-45px; right:0; font-size:40px; color:#fff; cursor:pointer; }
-</style>
+  <title>Collages</title>
+  <style>
+    body { margin:0; font-family:Arial; background:#f8f8f8; }
+    #controls { padding:10px; background:#fff; border-bottom:1px solid #ddd; display:flex; flex-wrap:wrap; gap:5px; }
+    button { padding:8px 12px; font-size:15px; cursor:pointer; border:1px solid #ccc; border-radius:4px; background:#f0f0f0; }
+    button:hover { background:#e0e0e0; }
+    .active { background:#007bff !important; color:white; border-color:#007bff; }
+    iframe { border:none; width:100%; height:calc(100vh - 75px); }
+  </style>
 </head>
 <body>
-<h1>Top 10 Most Liked • Last 24h</h1>
-<h2>May 26, 2026</h2>
-<div class="grid" id="grid"></div>
-
-<div class="modal" id="modal" onclick="if(event.target===this) closeModal();">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal()">×</span>
-    <img id="modalImg" src="">
-    <div class="modal-info" id="modalInfo"></div>
-  </div>
-</div>
+  <div id="controls"></div>
+  <iframe id="frame"></iframe>
 
 <script>
-const posts = [
-  {img:"https://pbs.twimg.com/media/HJMxcO_XwAArIgF.jpg", link:"https://x.com/beautifulcelebz/status/2059043817714540748", likes:1310, title:"Megan Fox"},
-  {img:"https://pbs.twimg.com/media/HJIZO6JakAEPW2v.jpg", link:"https://x.com/JumpTrailers/status/2058736124898742477", likes:491, title:"JENNIE for Dazed Korea"},
-  {img:"https://pbs.twimg.com/media/HJI7z68WsAA_r2Z.jpg", link:"https://x.com/JumpTrailers/status/2058775525070430308", likes:441, title:"Charli XCX"},
-  {img:"https://pbs.twimg.com/media/HJOmnGZWsAADwsh.jpg", link:"https://x.com/JumpTrailers/status/2059172843787518171", likes:339, title:"Hilary Duff via IG"},
-  {img:"https://pbs.twimg.com/media/HJMRYkDXoAAcGvV.jpg", link:"https://x.com/JumpTrailers/status/2059008832966119676", likes:310, title:"Hilary Duff"},
-  {img:"https://pbs.twimg.com/media/HJOFS0aWsAACg8H.jpg", link:"https://x.com/JumpTrailers/status/2059144854458765567", likes:219, title:"Mckenna Grace"},
-  {img:"https://pbs.twimg.com/media/HJLnZltXcAADmL-.jpg", link:"https://x.com/beautgallery/status/2058962414205321622", likes:191, title:"Gorgeous Girls"},
-  {img:"https://pbs.twimg.com/media/HJMU-9QXIAE4Ol5.jpg", link:"https://x.com/JumpTrailers/status/2059012763121287523", likes:170, title:"Nicole Wallace via IG Stories"},
-  {img:"https://pbs.twimg.com/media/HJNbwbEW8AAJuJh.jpg", link:"https://x.com/JumpTrailers/status/2059090345472709001", likes:164, title:"Inde Navarrette via IG"},
-  {img:"https://pbs.twimg.com/media/HJOV9SAXAAA-dvI.jpg", link:"https://x.com/JumpTrailers/status/2059154471158972680", likes:164, title:"Jennifer Lopez"}
-];
-
-const grid = document.getElementById('grid');
-posts.forEach(p => {
-  const card = document.createElement('div');
-  card.className = 'card';
-  card.innerHTML = `<img src="${p.img}"><div class="info">${p.likes} Likes • ${p.title}</div>`;
-  card.onclick = () => openModal(p.img, p.link, p.likes, p.title);
-  grid.appendChild(card);
-});
-
-function openModal(imgSrc, link, likes, title) {
-  document.getElementById('modalImg').src = imgSrc;
-  document.getElementById('modalInfo').innerHTML = `<a href="${link}" target="_blank">${likes} Likes • ${title} → View on X</a>`;
-  document.getElementById('modal').style.display = 'flex';
+async function getAvailableDates() {
+  const dates = [];
+  const today = new Date();
+  for (let i = 0; i < 180; i++) {
+    let d = new Date(today);
+    d.setDate(d.getDate() - i);
+    let ds = d.toISOString().slice(0,10).replace(/-/g,'');
+    try {
+      let res = await fetch(`collage/${ds}.html`, {method:'HEAD'});
+      if (res.ok) dates.push(ds);
+    } catch(e){}
+  }
+  return dates.sort().reverse();
 }
 
-function closeModal() {
-  document.getElementById('modal').style.display = 'none';
+function createUI(dates) {
+  const ctrl = document.getElementById('controls');
+  const months = [...new Set(dates.map(d => d.slice(0,6)))];
+  
+  months.forEach(m => {
+    const btn = document.createElement('button');
+    btn.textContent = m.slice(0,4) + '-' + m.slice(4,6);
+    btn.onclick = () => showWeek(m, dates);
+    ctrl.appendChild(btn);
+  });
+
+  if (dates.length) showWeek(months[0], dates);
 }
+
+function showWeek(month, dates) {
+  const ctrl = document.getElementById('controls');
+  // Remove only day buttons
+  Array.from(ctrl.children).forEach(b => {
+    if (b.textContent.length === 2) b.remove();
+  });
+
+  const monthDates = dates.filter(d => d.startsWith(month));
+  monthDates.forEach(d => {
+    const btn = document.createElement('button');
+    btn.textContent = d.slice(6,8);
+    btn.onclick = () => {
+      document.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      load(d);
+    };
+    ctrl.appendChild(btn);
+  });
+
+  load(monthDates[0]);
+}
+
+function load(date) {
+  document.getElementById('frame').src = `collage/${date}.html`;
+}
+
+getAvailableDates().then(createUI);
 </script>
 </body>
 </html>
