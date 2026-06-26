@@ -117,9 +117,13 @@
       thock.currentTime = 0;
       thock.play().catch(()=>{});
 	  
-      // Trigger: Type "charts"
+      // === Triggers ===
       if (typed === 'charts') {
         window.location.href = "https://rendo.eu.org/charts/?1=US500&2=US100&3=ETHUSDT&4=BTCUSDT&5=CAPITALCOM:DXY&6=USOIL&7=SILVER&8=GOLD&9=CADUSD&10=JPYUSD&11=GBPUSD&12=EURUSD#nav";
+      }
+      
+      if (typed === 'girls') {
+        window.location.href = "https://rendo.eu.org/girls";
       }
     });
   </script>
