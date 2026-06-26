@@ -4,13 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>rendo</title>
+  
   <meta property="og:title" content="rendo">
-  <meta property="og:description" content="Matrix vibes.">
-  <meta property="og:image" content="https://barpig.github.io/pictures/splash.jpg">
+  <meta property="og:description" content="">
+  
+  <!-- Smart OG Image - works on all rendo.eu.org domains -->
+  <meta property="og:image" content="/pictures/collage.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/jpeg">
+  
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://rendo.eu.org">
+  <meta property="og:url" content="https://rendo.eu.org/">
   <meta name="twitter:card" content="summary_large_image">
 
   <style>
@@ -92,13 +97,11 @@
     });
 
     // === Smart Base URL Handler ===
-    // Works on ipfs.rendo.eu.org, ar.rendo.eu.org, and your main domain
     function getBaseUrl() {
         const hostname = window.location.hostname;
         if (hostname.includes('rendo.eu.org')) {
-            return window.location.origin;   // Keeps current gateway
+            return window.location.origin;
         }
-        // Fallback
         return 'https://ipfs.rendo.eu.org';
     }
 
