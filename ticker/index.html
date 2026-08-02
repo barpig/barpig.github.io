@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Quickly check stock ticker charts with ticker.rendo.club. View real-time TradingView charts and links to Yahoo Finance, Finviz, and Google Finance.">
+    <meta name="keywords" content="stock ticker, real-time charts, TradingView, Yahoo Finance, Finviz, Google Finance, ticker rendo">
+    <meta name="author" content="Rendo">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph (for social media sharing) -->
+    <meta property="og:title" content="ticker.rendo.club - Quick Stock Charts">
+    <meta property="og:description" content="Instantly view stock charts for any ticker with TradingView, Yahoo Finance, Finviz, and Google Finance links.">
+    <meta property="og:url" content="https://ticker.rendo.club">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://ticker.rendo.club/og-image.png">
+    <meta property="og:site_name" content="ticker.rendo.club">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ticker.rendo.club - Quick Stock Charts">
+    <meta name="twitter:description" content="Instantly view stock charts for any ticker with TradingView, Yahoo Finance, Finviz, and Google Finance links.">
+    <meta name="twitter:image" content="https://ticker.rendo.club/og-image.png">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+    <!-- iOS Support -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <title>ticker.rendo.club</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: #1a1a1a;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            color: #ffffff;
+        }
+
+        .container {
+            padding: 20px;
+            width: 100%;
+            max-width: 90%;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+                max-width: 95%;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .container {
+                max-width: 85%;
+            }
+        }
+
+        .input-container {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            width: 100%;
+        }
+
+        .input-box {
+            flex: 1;
+            padding: 30px;
+            font-size: 24px;
+            background: #2d2d2d;
+            border: 2px solid #444;
+            border-radius: 8px;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        .input-box:focus {
+            outline: none;
+            border-color: #666;
+        }
+
+        .interval-select {
+            padding: 30px;
+            font-size: 24px;
+            background: #2d2d2d;
+            border: 2px solid #444;
+            border-radius: 8px;
+            color: #fff;
+            cursor: pointer;
+            width: 150px;
+        }
+
+        .interval-select:focus {
+            outline: none;
+            border-color: #666;
+        }
+
+        .share-button {
+            padding: 30px 0;
+            font-size: 24px;
+            background: #2d2d2d;
+            border: 2px solid #444;
+            border-radius: 8px;
+            color: #1e90ff;
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s;
+            width: 84px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .share-button:hover {
+            background: #3a3a3a;
+            color: #4682b4;
+        }
+
+        .share-button.copied {
+            animation: blink 0.5s ease-in-out;
+        }
+
+        @keyframes blink {
+            0% { background: #2d2d2d; }
+            50% { background: #1e90ff; color: #fff; }
+            100% { background: #2d2d2d; }
+        }
+
+        .stock-info {
+            margin-top: 20px;
+        }
+
+        .chart-links {
+            margin: 20px 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .chart-button {
+            background: linear-gradient(145deg, #2d2d2d, #1f1f1f);
+            border: 2px solid #555;
+            border-radius: 8px;
+            color: #ffffff;
+            padding: 12px 24px;
+            font-size: 18px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .chart-button:hover {
+            background: linear-gradient(145deg, #1e3a8a, #1e90ff);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .chart-container {
+            width: 100%;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ticker.rendo.club</h1>
+        <div class="input-container">
+            <input type="text" class="input-box" placeholder="Enter Stock Ticker (e.g., AAPL)" id="tickerInput">
+            <select id="intervalSelect" class="interval-select">
+                <option value="1">1</option>
+                <option value="3">3</option>
+                <option value="5">5</option>
+                <option value="15">15</option>
+                <option value="60">1H</option>
+                <option value="240">4H</option>
+                <option value="D">D</option>
+                <option value="W">W</option>
+                <option value="M">M</option>
+            </select>
+            <button class="share-button" id="shareButton">🔗</button>
+        </div>
+        <div class="stock-info" id="stockInfo">
+            <div class="chart-container" id="chartContainer"></div>
+            <div class="chart-links" id="chartLinks">
+                <a href="#" class="chart-button" id="tradingViewLink" target="_blank">TradingView Chart</a>
+                <a href="#" class="chart-button" id="finvizLink" target="_blank">Finviz</a>
+                <a href="#" class="chart-button" id="googleFinanceLink" target="_blank">Google Finance</a>
+                <a href="#" class="chart-button" id="yahooFinanceLink" target="_blank">Yahoo Finance</a>
+                <a href="#" class="chart-button" id="xSearchLink" target="_blank">Search X</a>
+                <a href="#" class="chart-button" id="stockTwitsLink" target="_blank">Search StockTwits</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://s3.tradingview.com/tv.js"></script>
+    <script>
+        const input = document.getElementById('tickerInput');
+        const intervalSelect = document.getElementById('intervalSelect');
+        const chartContainer = document.getElementById('chartContainer');
+        const tradingViewLink = document.getElementById('tradingViewLink');
+        const finvizLink = document.getElementById('finvizLink');
+        const googleFinanceLink = document.getElementById('googleFinanceLink');
+        const yahooFinanceLink = document.getElementById('yahooFinanceLink');
+        const xSearchLink = document.getElementById('xSearchLink');
+        const stockTwitsLink = document.getElementById('stockTwitsLink');
+        const shareButton = document.getElementById('shareButton');
+
+        // Global variables to track the current ticker and interval
+        let currentTicker;
+        let currentInterval;
+
+        // Load ticker and interval from URL if present, otherwise use localStorage
+        const urlParams = new URLSearchParams(window.location.search);
+        currentTicker = urlParams.get('ticker');
+        currentInterval = urlParams.get('interval');
+
+        // If no ticker in URL, load from localStorage
+        if (!currentTicker) {
+            currentTicker = localStorage.getItem('lastTicker');
+        }
+
+        // If no interval in URL, load from localStorage, otherwise default to 'D'
+        if (!currentInterval) {
+            currentInterval = localStorage.getItem('chartInterval') || 'D';
+        }
+
+        // Debug: Log the initial values
+        console.log('Initial ticker:', currentTicker);
+        console.log('Initial interval:', currentInterval);
+
+        // Set the input field and interval selector
+        if (currentTicker) {
+            input.value = currentTicker.toUpperCase();
+        }
+        intervalSelect.value = currentInterval;
+
+        // Store the ticker and interval in localStorage for persistence
+        if (currentTicker) {
+            localStorage.setItem('lastTicker', currentTicker);
+        }
+        localStorage.setItem('chartInterval', currentInterval);
+
+        // Load the chart with the last ticker and interval if a ticker exists
+        if (currentTicker) {
+            loadStockData(currentTicker.toUpperCase(), currentInterval);
+        }
+
+        intervalSelect.addEventListener('change', function() {
+            currentInterval = intervalSelect.value;
+            localStorage.setItem('chartInterval', currentInterval);
+            console.log('Interval changed to:', currentInterval);
+            if (currentTicker) {
+                loadStockData(currentTicker, currentInterval);
+            }
+        });
+
+        // Debounce function to limit how often loadStockData is called
+        let debounceTimeout;
+        function debounce(func, delay) {
+            return function(...args) {
+                clearTimeout(debounceTimeout);
+                debounceTimeout = setTimeout(() => func.apply(this, args), delay);
+            };
+        }
+
+        // Auto-search as the user types with debounce
+        input.addEventListener('input', debounce(function() {
+            const ticker = input.value.trim().toUpperCase();
+            if (ticker.length >= 2) { // Only load if ticker is at least 2 characters
+                // Update the stored ticker when the user types a new one
+                localStorage.setItem('lastTicker', ticker);
+                currentTicker = ticker;
+                loadStockData(ticker, currentInterval);
+            }
+        }, 300));
+
+        // Deselect the input box when Enter is pressed, but keep the ticker in the field
+        input.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault(); // Prevent any default form submission behavior
+                input.blur(); // Deselect the input field (ticker remains in the field)
+            }
+        });
+
+        // Capture keypresses at the document level using keydown
+        document.addEventListener('keydown', function(e) {
+            // Ignore if an input or button is focused
+            const activeElement = document.activeElement;
+            if (activeElement.tagName === 'INPUT' || activeElement.tagName === 'BUTTON' || activeElement.tagName === 'SELECT') {
+                return;
+            }
+
+            // Prevent default to avoid double-typing
+            e.preventDefault();
+
+            // Focus the input field and clear it if it wasn't focused
+            if (document.activeElement !== input) {
+                input.value = ''; // Clear the input field to start a new ticker
+            }
+            input.focus();
+
+            // Append the typed character to the input value
+            const char = e.key.toUpperCase();
+            if (/^[A-Z0-9]$/.test(char)) { // Only allow alphanumeric characters
+                input.value += char;
+                // Trigger the input event manually to update the chart
+                const inputEvent = new Event('input', { bubbles: true });
+                input.dispatchEvent(inputEvent);
+            }
+        });
+
+        shareButton.addEventListener('click', function() {
+            const ticker = input.value.trim().toUpperCase();
+            if (ticker) {
+                // Debug: Log the interval being used for the share URL
+                console.log('Share button interval:', currentInterval);
+                const shareUrl = `https://ticker.rendo.club/?ticker=${encodeURIComponent(ticker)}&interval=${encodeURIComponent(currentInterval)}`;
+                navigator.clipboard.writeText(shareUrl).then(() => {
+                    shareButton.classList.add('copied');
+                    setTimeout(() => shareButton.classList.remove('copied'), 500);
+                }).catch(err => {
+                    console.error('Failed to copy: ', err);
+                });
+            }
+        });
+
+        function loadStockData(ticker, interval) {
+            // Clear previous chart
+            chartContainer.innerHTML = '';
+
+            // Update the current ticker and interval
+            currentTicker = ticker;
+            currentInterval = interval;
+            localStorage.setItem('lastTicker', currentTicker);
+            localStorage.setItem('chartInterval', currentInterval);
+
+            // Debug: Log the interval being used
+            console.log('Loading chart with ticker:', currentTicker, 'and interval:', currentInterval);
+
+            // Let TradingView handle the ticker without an exchange prefix
+            const tradingViewTicker = ticker;
+
+            // CHANGE START: Make chart height responsive
+            // Calculate chart height based on viewport height
+            let chartHeight = window.innerHeight * 0.5; // 50vh equivalent in pixels
+            if (window.innerWidth <= 768) {
+                chartHeight = window.innerHeight * 0.4; // 40vh on smaller screens
+            }
+
+            // TradingView Widget (embedded)
+            new TradingView.widget({
+                "width": "100%",
+                "height": chartHeight, // Use responsive height
+                "symbol": tradingViewTicker, // Use the raw ticker
+                "interval": currentInterval, // Use the current interval
+                "timezone": "Etc/UTC",
+                "theme": "dark",
+                "style": "1",
+                "locale": "en",
+                "toolbar_bg": "#f1f3f6",
+                "hide_top_toolbar": true, // Disable the widget's toolbar to prevent untracked interval changes
+                "enable_publishing": false,
+                "allow_symbol_change": true,
+                "hide_volume": true, // Hide the default volume overlay on the main chart
+                "studies": [
+                    "Volume@tv-basicstudies" // Add volume as a separate pane below the chart
+                ],
+                "container_id": "chartContainer"
+            });
+            // CHANGE END
+
+            // Set chart links (links don't need the exchange prefix)
+            tradingViewLink.href = `https://www.tradingview.com/chart/?symbol=${ticker}`;
+            tradingViewLink.textContent = `TradingView Chart (${ticker})`;
+            
+            finvizLink.href = `https://finviz.com/quote.ashx?t=${ticker}`;
+            finvizLink.textContent = `Finviz (${ticker})`;
+            
+            googleFinanceLink.href = `https://www.google.com/finance/quote/${ticker}`;
+            googleFinanceLink.textContent = `Google Finance (${ticker})`;
+            
+            yahooFinanceLink.href = `https://finance.yahoo.com/chart/${ticker}`;
+            yahooFinanceLink.textContent = `Yahoo Finance (${ticker})`;
+
+            xSearchLink.href = `https://x.com/search?q=$${ticker}`;
+            xSearchLink.textContent = `Search X ($${ticker})`;
+
+            stockTwitsLink.href = `https://stocktwits.com/symbol/${ticker}`;
+            stockTwitsLink.textContent = `Search StockTwits (${ticker})`;
+        }
+
+        // Register the service worker for PWA functionality
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').then(registration => {
+                    console.log('Service Worker registered with scope:', registration.scope);
+                }).catch(error => {
+                    console.error('Service Worker registration failed:', error);
+                });
+            });
+        }
+    </script>
+</body>
+</html>

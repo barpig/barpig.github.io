@@ -1,0 +1,21 @@
+{
+  "name": "Ticker Rendo",
+  "short_name": "TickerRendo",
+  "description": "Quickly check stock ticker charts with ticker.rendo.club.",
+  "start_url": "/?utm_source=pwa",
+  "display": "standalone",
+  "background_color": "#1a1a1a",
+  "theme_color": "#1e90ff",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
