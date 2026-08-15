@@ -116,7 +116,61 @@ const collages = [
   {img:"https://pbs.twimg.com/media/HPLBnpyWIAAJeod.jpg", link:"https://x.com/JumpTrailers/status/2085942470651560286", likes:1944, title:"Alysa Liu, Happy Birthday"},
   {img:"https://pbs.twimg.com/media/HPLemn_XAAAQljO.jpg", link:"https://x.com/JumpTrailers/status/2085974338507825522", likes:1898, title:"Anne Hathaway for Vanity Fair"}
     ]
-  }
+  },
+       // ---------- August 7, 2026 ----------
+  {
+    id: "2026-08-07",
+    date: "August 7, 2026",
+    title: "Top 10 Most Liked • Last 24h",
+    posts: [
+{img:"https://pbs.twimg.com/media/HPEXrRiW4AA5q9R.jpg", link:"https://x.com/JumpTrailers/status/2085474149078569422", likes:4437, title:"Inde Navarrette"},
+  {img:"https://pbs.twimg.com/media/HPEniTRWAAAN5ba.jpg", link:"https://x.com/JumpTrailers/status/2085491578571985324", likes:2958, title:"Sydney Sweeney"},
+  {img:"https://pbs.twimg.com/media/HPFEBbiXYAA3ENl.jpg", link:"https://x.com/JumpTrailers/status/2085522966394122669", likes:2839, title:"Kathryn Newton"},
+  {img:"https://pbs.twimg.com/media/HPGcC6ZXEAAR7zM.jpg", link:"https://x.com/JumpTrailers/status/2085619684267688140", likes:2799, title:"Samara Weaving"},
+  {img:"https://pbs.twimg.com/media/HPFHnhUXQAArf2M.jpg", link:"https://x.com/JumpTrailers/status/2085526876005572987", likes:2559, title:"Sydney Sweeney"},
+  {img:"https://pbs.twimg.com/media/HPFcAkiXUAAjmoF.jpg", link:"https://x.com/beautifulcelebz/status/2085549276541731138", likes:2052, title:"Kylie Jenner"},
+  {img:"https://pbs.twimg.com/media/HPEjSCeWIAANa_9.jpg", link:"https://x.com/JumpTrailers/status/2085486905697702268", likes:1731, title:"Xochitl Gomez"},
+  {img:"https://pbs.twimg.com/media/HPFbnalXUAAp60m.jpg", link:"https://x.com/JumpTrailers/status/2085548886844703220", likes:1621, title:"Sadie Sink"},
+  {img:"https://pbs.twimg.com/media/HPEVyrVWgAAz0bJ.jpg", link:"https://x.com/JumpTrailers/status/2085472070255722901", likes:1467, title:"Zara Larsson"},
+  {img:"https://pbs.twimg.com/media/HPFqCZtWUAAkBQB.jpg", link:"https://x.com/JumpTrailers/status/2085564730433790412", likes:1429, title:"Megan Lawless"}
+    ]
+  },
+         // ---------- August 6, 2026 ----------
+  {
+    id: "2026-08-06",
+    date: "August 6, 2026",
+    title: "Top 10 Most Liked • Last 24h",
+    posts: [
+  {img:"https://pbs.twimg.com/media/HO__B7AWUAABAty.jpg", link:"https://x.com/JumpTrailers/status/2085165571117556109", likes:9399, title:"Rowan Blanchard"},
+  {img:"https://pbs.twimg.com/media/HO-bZFZWoAAc-B-.jpg", link:"https://x.com/JumpTrailers/status/2085056019474915383", likes:5657, title:"Rowan Blanchard"},
+  {img:"https://pbs.twimg.com/media/HPAdg6jWgAASFdz.jpg", link:"https://x.com/JumpTrailers/status/2085199102296338590", likes:4549, title:"Madison Beer"},
+  {img:"https://pbs.twimg.com/media/HO9MNy5WgAA-3cX.jpg", link:"https://x.com/beautyshowcase/status/2085002886379893122", likes:3624, title:"Lola Hansen 🇺🇸"},
+  {img:"https://pbs.twimg.com/media/HPAuqY_WkAAZxYj.jpg", link:"https://x.com/JumpTrailers/status/2085217954036175119", likes:2858, title:"Inde Navarrette"},
+  {img:"https://pbs.twimg.com/media/HO9KR-sW0AAZPOh.jpg", link:"https://x.com/beautyshowcase/status/2085027045562786122", likes:2243, title:"Danish 🇩🇰"},
+  {img:"https://pbs.twimg.com/media/HO_KtLGXEAAStIi.jpg", link:"https://x.com/JumpTrailers/status/2085108035916325004", likes:1825, title:"Rowan Blanchard"},
+  {img:"https://pbs.twimg.com/media/HPAyF6KXUAAXJlw.jpg", link:"https://x.com/JumpTrailers/status/2085221716247134587", likes:1738, title:"Zara Larsson"},
+  {img:"https://pbs.twimg.com/media/HPAfuQJWcAAlaej.jpg", link:"https://x.com/JumpTrailers/status/2085201516516835589", likes:1709, title:"Inde Navarrette"},
+  {img:"https://pbs.twimg.com/media/HPAT_x-WcAAChnz.jpg", link:"https://x.com/JumpTrailers/status/2085188646739603808", likes:1478, title:"Inde Navarrette"}
+    ]
+  },
+           // ---------- August 5, 2026 ----------
+  {
+    id: "2026-08-05",
+    date: "August 5, 2026",
+    title: "Top 10 Most Liked • Last 24h",
+    posts: [
+  {img:"https://pbs.twimg.com/media/HO61xT3WsAAwpnB.jpg", link:"https://x.com/JumpTrailers/status/2084803556658528681", likes:28701, title:"4K | Zara Larsson performing at Lollapalooza"},
+  {img:"https://pbs.twimg.com/media/HO6H0XyX0AA9A3Y.jpg", link:"https://x.com/JumpTrailers/status/2084753018268881078", likes:5797, title:"Inde Navarrette for Vogue"},
+  {img:"https://pbs.twimg.com/media/HO71szBW0AIPY_b.jpg", link:"https://x.com/JumpTrailers/status/2084873833345859638", likes:4984, title:"Samara Weaving"},
+  {img:"https://pbs.twimg.com/media/HO6Ljt9XkAEmm9e.jpg", link:"https://x.com/BaddiesBae_/status/2084757712970129431", likes:4216, title:"Dakota Lynn - Florida State 🇺🇸"},
+  {img:"https://pbs.twimg.com/media/HO5eoCsWMAAj6dY.jpg", link:"https://x.com/JumpTrailers/status/2084707729537433849", likes:2281, title:"Kylie Jenner for Khy"},
+  {img:"https://pbs.twimg.com/media/HO66FnIWAAA_4bV.jpg", link:"https://x.com/JumpTrailers/status/2084808289951596763", likes:2084, title:"Samara Weaving"},
+  {img:"https://pbs.twimg.com/media/HO6-AT_WgAAmGNZ.jpg", link:"https://x.com/JumpTrailers/status/2084812595626758154", likes:2049, title:"Erin Moriarty"},
+  {img:"https://pbs.twimg.com/media/HO6JPKOXkAAFlGR.jpg", link:"https://x.com/JumpTrailers/status/2084754593851048086", likes:1966, title:"Camila Cabello via IG"},
+  {img:"https://pbs.twimg.com/media/HO7O5FJW4AAIBrp.jpg", link:"https://x.com/JumpTrailers/status/2084831178243051827", likes:1800, title:"Chase Infiniti"},
+  {img:"https://pbs.twimg.com/media/HO6RjjuXYAEOqyl.jpg", link:"https://x.com/JumpTrailers/status/2084763732245188810", likes:1482, title:"Inde Navarrette"}
+    ]
+  },
 
 
 ];

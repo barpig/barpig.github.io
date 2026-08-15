@@ -366,3 +366,57 @@ body:has(.search-box) .card {
 body:has(.search-box) .card .info {
   margin-top: auto;
 }
+/* Hot pink Bowie logo */
+.logo {
+  font-weight: 700;
+  font-size: 1.35rem;
+  letter-spacing: -0.02em;
+  color: #ff2d78 !important; /* hot pink */
+}
+
+.logo:hover {
+  color: #ff4d8d !important;
+}
+
+/* Remove the big page title spacing on homepage */
+.archive {
+  padding-top: 40px;
+}
+
+/* Make tag pages feel cleaner */
+.page-title {
+  padding: 32px 20px 8px;
+}
+
+.page-title h1 {
+  font-size: 1.75rem;
+}
+
+.page-title h2 {
+  font-size: 0.95rem;
+  margin-top: 4px;
+}
+/* Footer with X link */
+.site-footer {
+  position: fixed;
+  bottom: 20px;
+  right: 24px;
+  z-index: 50;
+}
+
+.x-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #888;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+.x-link:hover {
+  color: #fff;
+}
+
+.x-link svg {
+  opacity: 0.8;
+}
