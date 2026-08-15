@@ -24,7 +24,24 @@ const collages = [
   */
   // ================================================================
 
-
+           // ---------- August 15, 2026 ----------
+  {
+    id: "2026-08-15",
+    date: "August 15, 2026",
+    title: "Top 10 Most Liked • Last 24h",
+    posts: [
+{img:"https://pbs.twimg.com/media/HOkBuFnXcAEpUjH.jpg", link:"https://x.com/PinnacleTrends/status/2088203985781973364", likes:26051, title:"Kendall Jenner"},
+  {img:"https://pbs.twimg.com/media/HPp6aJzWAAAlMvk.jpg", link:"https://x.com/JumpTrailers/status/2088115972963979553", likes:8015, title:"Samara Weaving"},
+  {img:"https://pbs.twimg.com/media/HPpmHmSW8AAJaqt.jpg", link:"https://x.com/JumpTrailers/status/2088093741642842380", likes:7541, title:"Madelyn Cline at Netflix's End of Summer Bash"},
+  {img:"https://pbs.twimg.com/media/HPp3jtUXAAEM8UJ.jpg", link:"https://x.com/JumpTrailers/status/2088112843350528035", likes:7322, title:"Emilia Mernes"},
+  {img:"https://pbs.twimg.com/media/HPsizGVWQAA0fGo.jpg", link:"https://x.com/JumpTrailers/status/2088301136730071090", likes:6829, title:"Sadie Sink"},
+  {img:"https://pbs.twimg.com/media/HPqfqGnXgAAlmph.jpg", link:"https://x.com/JumpTrailers/status/2088156938345341080", likes:6713, title:"Auli'i Cravalho"},
+  {img:"https://pbs.twimg.com/media/HPr-8UqW0AIH-Ax.jpg", link:"https://x.com/beautyshowcase/status/2088287027515240454", likes:6126, title:"Gali Klugman (Israeli 🇮🇱)"},
+  {img:"https://pbs.twimg.com/media/HPpKfezXkAA-Uyb.jpg", link:"https://x.com/JumpTrailers/status/2088063300823031901", likes:5641, title:"Inde Navarrette for Gap"},
+  {img:"https://pbs.twimg.com/media/HPp7DkvWEAAw_OL.jpg", link:"https://x.com/JumpTrailers/status/2088116685836271821", likes:4534, title:"Olivia Rodrigo"},
+  {img:"https://pbs.twimg.com/media/HPphb3ZXIAAVMUb.jpg", link:"https://x.com/JumpTrailers/status/2088088822064017880", likes:4383, title:"Madelyn Cline at Netflix's End of Summer Bash"}
+    ]
+  },
   // ---------- August 14, 2026 ----------
   {
     id: "2026-08-14",
@@ -171,7 +188,78 @@ const collages = [
   {img:"https://pbs.twimg.com/media/HO6RjjuXYAEOqyl.jpg", link:"https://x.com/JumpTrailers/status/2084763732245188810", likes:1482, title:"Inde Navarrette"}
     ]
   },
-
+           // ---------- August 4, 2026 ----------
+  {
+    id: "2026-08-04",
+    date: "August 4, 2026",
+    title: "Top 10 Most Liked • Last 24h",
+    posts: [
+  {img:"https://pbs.twimg.com/media/HO0bX1HWwAAvz9r.jpg", link:"https://x.com/beautifulcelebz/status/2084352305114042843", likes:10145, title:"Jessica Alba 😍"},
+  {img:"https://pbs.twimg.com/media/HO0ah8yWwAAEm7x.jpg", link:"https://x.com/JumpTrailers/status/2084352553156821288", likes:4714, title:"Samara Weaving"},
+  {img:"https://pbs.twimg.com/media/HO0rlXzW0AEMZrA.jpg", link:"https://x.com/JumpTrailers/status/2084370134387626388", likes:4486, title:"Erin Moriarty"},
+  {img:"https://pbs.twimg.com/media/HOzm9Z5XgAA7szE.jpg", link:"https://x.com/beautyshowcase/status/2084294695044173897", likes:3943, title:"Good morning ❤️"},
+  {img:"https://pbs.twimg.com/media/HO2I0ofXsAAhmim.jpg", link:"https://x.com/JumpTrailers/status/2084472646859653315", likes:3353, title:"Sydney Sweeney for SYRN"},
+  {img:"https://pbs.twimg.com/media/HOzoOy1XsAAVMv1.jpg", link:"https://x.com/beautyshowcase/status/2084320892281360861", likes:2807, title:"Shay Baradut (Israeli 🇮🇱)"},
+  {img:"https://pbs.twimg.com/media/HO1VkFLXUAAz7ow.jpg", link:"https://x.com/JumpTrailers/status/2084416294187651532", likes:2687, title:"Samara Weaving"},
+  {img:"https://pbs.twimg.com/media/HO0l7NTWAAA3hie.jpg", link:"https://x.com/JumpTrailers/status/2084363915417288819", likes:2611, title:"Sydney Sweeney for SYRN"},
+  {img:"https://pbs.twimg.com/media/HO2LlVJXYAAQuw0.jpg", link:"https://x.com/JumpTrailers/status/2084475682969592176", likes:1888, title:"Madison Beer"},
+  {img:"https://pbs.twimg.com/media/HO1Wh3rWsAAXnj4.jpg", link:"https://x.com/JumpTrailers/status/2084417366918623422", likes:1834, title:"Sophie Thatcher for The Hollywood Reporter"}
+    ]
+  },
+             // ---------- August 3, 2026 ----------
+  {
+    id: "2026-08-03",
+    date: "August 3, 2026",
+    title: "Top 10 Most Liked • Last 24h",
+    posts: [
+{img:"https://pbs.twimg.com/media/HOu6fjVWEAAI2-B.jpg", link:"https://x.com/JumpTrailers/status/2083964309319631086", likes:7430, title:"Samara Weaving"},
+  {img:"https://pbs.twimg.com/media/HOvRv52X0AAeer4.jpg", link:"https://x.com/JumpTrailers/status/2083989897829081589", likes:3438, title:"4K | Emily Ratajkowski"},
+  {img:"https://pbs.twimg.com/media/HOvYnbHWAAAYthc.jpg", link:"https://x.com/JumpTrailers/status/2083997450671419468", likes:2278, title:"Hailey Bieber via IG"},
+  {img:"https://pbs.twimg.com/media/HOu78MfXMAAE1ZL.jpg", link:"https://x.com/beautyshowcase/status/2083980902086951160", likes:2092, title:"Madeline Hope 🇺🇸"},
+  {img:"https://pbs.twimg.com/media/HOvYio7XkAASj0T.jpg", link:"https://x.com/beautifulcelebz/status/2083997348338839747", likes:2078, title:"Emily Ratajkowski 😍"},
+  {img:"https://pbs.twimg.com/media/HOwzWEjXQAAp29k.jpg", link:"https://x.com/BaddiesBae_/status/2084097238230352095", likes:1752, title:"Ava Nucci – Mississippi State 🇺🇸"},
+  {img:"https://pbs.twimg.com/media/HOw02KKWgAAJ_Lc.jpg", link:"https://x.com/JumpTrailers/status/2084098843436569031", likes:1440, title:"Emily Ratajkowski"},
+  {img:"https://pbs.twimg.com/media/HOv4Gh7XwAA6q5O.jpg", link:"https://x.com/BaddiesBae_/status/2084032803616805174", likes:1435, title:"Dani Lichter - Penn State 🇺🇸"},
+  {img:"https://pbs.twimg.com/media/HOvvPvwWQAAREnK.jpg", link:"https://x.com/JumpTrailers/status/2084022317722611792", likes:1258, title:"Mckenna Grace at the \"PAW Patrol: The Dino Movie\" premiere."},
+  {img:"https://pbs.twimg.com/media/HOxrbFBW8AAM0Tl.jpg", link:"https://x.com/JumpTrailers/status/2084158927768277276", likes:1177, title:"Emily Ratajkowski via IG"}
+    ]
+  },
+             // ---------- August 2, 2026 ----------
+  {
+    id: "2026-08-02",
+    date: "August 2, 2026",
+    title: "Top 10 Most Liked • Last 24h",
+    posts: [
+ {img:"https://pbs.twimg.com/media/HOqkjvXWAAA_meE.jpg", link:"https://x.com/JumpTrailers/status/2083658743326117893", likes:12786, title:"Samara Weaving"},
+  {img:"https://pbs.twimg.com/media/HOp26AkXMAADvqQ.jpg", link:"https://x.com/JumpTrailers/status/2083608524429365672", likes:6474, title:"Madelaine Petsch"},
+  {img:"https://pbs.twimg.com/media/HOpBs1AXAAAMb1C.jpg", link:"https://x.com/beautyshowcase/status/2083580262303363222", likes:6437, title:"Ela Beeri (Israeli 🇮🇱)"},
+  {img:"https://pbs.twimg.com/media/HOpBnrYW4AEqghY.jpg", link:"https://x.com/beautyshowcase/status/2083636382430335293", likes:4290, title:"PrettyGirls post"},
+  {img:"https://pbs.twimg.com/media/HOpCJSsWIAAfc49.jpg", link:"https://x.com/beautyshowcase/status/2083595613279604914", likes:3871, title:"Spanish 🇪🇸"},
+  {img:"https://pbs.twimg.com/media/HOrCqj_WsAAAXnL.jpg", link:"https://x.com/JumpTrailers/status/2083691821889151255", likes:3110, title:"Margaret Qualley"},
+  {img:"https://pbs.twimg.com/media/HOpAx6gXUAAf0Ow.jpg", link:"https://x.com/beautyshowcase/status/2083621283561119839", likes:3086, title:"Vietnamese 🇻🇳"},
+  {img:"https://pbs.twimg.com/media/HOVSUvUW4AA_D05.jpg", link:"https://x.com/BaddiesBae_/status/2083670355835548141", likes:3015, title:"Hannah Kuron - Bowling Green 🇺🇸"},
+  {img:"https://pbs.twimg.com/media/HOpb9odWkAE0Cx6.jpg", link:"https://x.com/JumpTrailers/status/2083578916040482902", likes:2512, title:"4K | Olivia Rodrigo"},
+  {img:"https://pbs.twimg.com/media/HOrihNIWAAAQRhj.jpg", link:"https://x.com/Kevin10919728/status/2083727056320266353", likes:2035, title:"KATE UPTON SI"}
+    ]
+  },
+             // ---------- August 1, 2026 ----------
+  {
+    id: "2026-08-01",
+    date: "August 1, 2026",
+    title: "Top 10 Most Liked • Last 24h",
+    posts: [
+  {img:"https://pbs.twimg.com/media/HOh-QiZWsAAc4rZ.jpg", link:"https://x.com/JumpTrailers/status/2083053656589439344", likes:7047, title:"Sydney Sweeney for SYRN"},
+  {img:"https://pbs.twimg.com/media/HOh6yO-WkAAZV6a.jpg", link:"https://x.com/beautifulcelebz/status/2083049836471816451", likes:4545, title:"Florence Pugh by Alex Babsky"},
+  {img:"https://pbs.twimg.com/media/HOlCxZoWIAAl6Xz.jpg", link:"https://x.com/JumpTrailers/status/2083269724331237809", likes:3741, title:"Samara Weaving"},
+  {img:"https://pbs.twimg.com/media/HOkQngAWIAAzari.jpg", link:"https://x.com/JumpTrailers/status/2083214588233855456", likes:3732, title:"Rihanna for Savage X Fenty"},
+  {img:"https://pbs.twimg.com/media/HOmfxziXAAIK-zW.jpg", link:"https://x.com/BaddiesBae_/status/2083372197855305840", likes:2983, title:"Marley Washenitz - Arizona State"},
+  {img:"https://pbs.twimg.com/media/HOkxq3BXgAAM8xj.jpg", link:"https://x.com/JumpTrailers/status/2083250927713108267", likes:2681, title:"Inde Navarrette for Variety"},
+  {img:"https://pbs.twimg.com/media/HOhpUAiWEAAgLMd.jpg", link:"https://x.com/JumpTrailers/status/2083030651054243962", likes:2364, title:"Victoria Justice"},
+  {img:"https://pbs.twimg.com/media/HOkLVQ2W0AABpgB.jpg", link:"https://x.com/beautifulcelebz/status/2083208768553161132", likes:1863, title:"Rihanna x Savage X Fenty"},
+  {img:"https://pbs.twimg.com/media/HOm6HhUWwAA4s1v.jpg", link:"https://x.com/JumpTrailers/status/2083400955463131153", likes:1811, title:"Megan Fox"},
+  {img:"https://pbs.twimg.com/media/HOiB8-jXsAET8jp.jpg", link:"https://x.com/JumpTrailers/status/2083057723227144561", likes:1718, title:"Madison Bailey via IG"}
+    ]
+  },
 
 ];
 
