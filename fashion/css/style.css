@@ -305,3 +305,64 @@ img {
     padding: 14px 16px;
   }
 }
+/* ---------- Tag links ---------- */
+.tag-link {
+  color: #ccc;
+  transition: color 0.2s;
+  border-bottom: 1px solid transparent;
+}
+
+.tag-link:hover {
+  color: #fff;
+  border-bottom-color: #fff;
+}
+
+.card-date {
+  font-size: 0.75rem;
+  color: #666;
+  margin-top: 4px;
+}
+
+/* Search box on tag page */
+.search-box {
+  max-width: 480px;
+  margin: 0 auto 30px;
+  padding: 0 20px;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 14px 18px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text);
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.search-box input:focus {
+  border-color: #555;
+}
+
+.search-box input::placeholder {
+  color: #666;
+}
+/* Better image display on tag / search pages */
+.tag-page .card img,
+body:has(.search-box) .card img {
+  aspect-ratio: auto;
+  object-fit: contain;
+  background: #111;
+  max-height: 520px;
+}
+
+body:has(.search-box) .card {
+  display: flex;
+  flex-direction: column;
+}
+
+body:has(.search-box) .card .info {
+  margin-top: auto;
+}

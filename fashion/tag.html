@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tag • Fashion Archive</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="index.html" class="logo">Fashion<span>Archive</span></a>
+    <nav class="nav">
+      <a href="index.html">← All Days</a>
+    </nav>
+  </header>
+
+  <div class="page-title">
+    <h1 id="pageTitle">Looks</h1>
+    <h2 id="pageSubtitle"></h2>
+  </div>
+
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search any name… (e.g. Samara Weaving)" autocomplete="off">
+  </div>
+
+  <div class="grid" id="grid">
+    <!-- Results injected by JS -->
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="modal" onclick="if(event.target===this) closeModal();">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">×</span>
+      <img id="modalImg" src="" alt="">
+      <div class="modal-info" id="modalInfo"></div>
+    </div>
+  </div>
+
+  <script src="data/collages.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    const query = getQueryParam('q') || '';
+    const titleEl = document.getElementById('pageTitle');
+    const subEl = document.getElementById('pageSubtitle');
+    const input = document.getElementById('searchInput');
+
+    function updatePage(q) {
+      if (!q) {
+        titleEl.textContent = 'Search Looks';
+        subEl.textContent = 'Type a name above';
+        document.getElementById('grid').innerHTML = '';
+        return;
+      }
+
+      const results = getPostsByName(q);
+      titleEl.textContent = q;
+      subEl.textContent = `${results.length} look${results.length !== 1 ? 's' : ''} found`;
+      document.title = `${q} • Fashion Archive`;
+      renderTagResults(q);
+    }
+
+    // Initial load from URL
+    if (query) {
+      input.value = query;
+      updatePage(query);
+    }
+
+    // Live search
+    let timer;
+    input.addEventListener('input', () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        const q = input.value.trim();
+        // Update URL without reload
+        const url = q ? `tag.html?q=${encodeURIComponent(q)}` : 'tag.html';
+        history.replaceState(null, '', url);
+        updatePage(q);
+      }, 250);
+    });
+
+    // Also submit on Enter
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        input.blur();
+      }
+    });
+  </script>
+</body>
+</html>

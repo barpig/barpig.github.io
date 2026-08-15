@@ -80,6 +80,42 @@ const collages = [
   {img:"https://pbs.twimg.com/media/HPY7Rp2XwAAWtIP.jpg", link:"https://x.com/JumpTrailers/status/2086921286396068238", likes:1522, title:"4K | Sadie Sink (Prada)"},
   {img:"https://pbs.twimg.com/media/HPZ05H6XYAAmnbA.jpg", link:"https://x.com/JumpTrailers/status/2086984551826411716", likes:1354, title:"4K | Jennifer Lopez"}
     ]
+  },
+    // ---------- August 10, 2026 ----------
+  {
+    id: "2026-08-10",
+    date: "August 10, 2026",
+    title: "Top 10 Most Liked • Last 24h",
+    posts: [
+  {img:"https://pbs.twimg.com/media/HPTtNANWoAAMvX7.jpg", link:"https://x.com/JumpTrailers/status/2086553341383856314", likes:14329, title:"Inde Navarrette"},
+  {img:"https://pbs.twimg.com/media/HPSdDcFWoAAOLFO.jpg", link:"https://x.com/beautyshowcase/status/2086490186947407937", likes:12220, title:"Extremely rare build"},
+  {img:"https://pbs.twimg.com/media/HPUeRiRXQAA1bMA.jpg", link:"https://x.com/JumpTrailers/status/2086607295694492116", likes:6053, title:"Samara Weaving"},
+  {img:"https://pbs.twimg.com/media/HPUtA87W8AAfgyQ.jpg", link:"https://x.com/JumpTrailers/status/2086623509136953640", likes:4947, title:"Sadie Sink"},
+  {img:"https://pbs.twimg.com/media/HPUPqEqXwAAib64.jpg", link:"https://x.com/JumpTrailers/status/2086591224165888378", likes:3868, title:"Margaret Qualley"},
+  {img:"https://pbs.twimg.com/media/HPU32oKWoAAgYFV.jpg", link:"https://x.com/BaddiesBae_/status/2086635496801751160", likes:3316, title:"Riana Bailey - Texas"},
+  {img:"https://pbs.twimg.com/media/HPUAPzsWcAAtUzJ.jpg", link:"https://x.com/JumpTrailers/status/2086574292498583620", likes:3087, title:"Zara Larsson via TikTok"},
+  {img:"https://pbs.twimg.com/media/HPTk8XcXEAAtooe.jpg", link:"https://x.com/JumpTrailers/status/2086544713964806171", likes:2661, title:"Dafne Keen at Fan Expo Boston"},
+  {img:"https://pbs.twimg.com/media/HPVb3t_XgAAi8VR.jpg", link:"https://x.com/JumpTrailers/status/2086675026569203758", likes:2454, title:"Alysa Liu"},
+  {img:"https://pbs.twimg.com/media/HPUqSJYXQAApwcs.jpg", link:"https://x.com/JumpTrailers/status/2086620499526762582", likes:2448, title:"Sydney Sweeney"}
+    ]
+  },
+     // ---------- August 9, 2026 ----------
+  {
+    id: "2026-08-09",
+    date: "August 9, 2026",
+    title: "Top 10 Most Liked • Last 24h",
+    posts: [
+{img:"https://pbs.twimg.com/media/HPOGQp-XYAAQgze.jpg", link:"https://x.com/JumpTrailers/status/2086158679674413087", likes:32069, title:"Zara Larsson via IG"},
+  {img:"https://pbs.twimg.com/media/HPOinTMW0AAVOj5.jpg", link:"https://x.com/JumpTrailers/status/2086189865264095582", likes:7427, title:"Sydney Sweeney for SYRN"},
+  {img:"https://pbs.twimg.com/media/HPPHE_kXgAADt2Q.jpg", link:"https://x.com/JumpTrailers/status/2086229947585114140", likes:7364, title:"Samara Weaving for Marie Claire"},
+  {img:"https://pbs.twimg.com/media/HPNHYChXgAAMt6i.jpg", link:"https://x.com/beautyshowcase/status/2086120254200258755", likes:5641, title:"Italian 🇮🇹"},
+  {img:"https://pbs.twimg.com/media/HPLkpVsW0AAF0Ez.jpg", link:"https://x.com/JumpTrailers/status/2085980981635203376", likes:4803, title:"Cailee Spaeny"},
+  {img:"https://pbs.twimg.com/media/HPLKU6oXwAA7vpv.jpg", link:"https://x.com/JumpTrailers/status/2085952052044124553", likes:2737, title:"Millie Bobby Brown"},
+  {img:"https://pbs.twimg.com/media/HPNHqW_WMAAxLgG.jpg", link:"https://x.com/beautyshowcase/status/2086089881244094701", likes:2456, title:"Good morning ❤️"},
+  {img:"https://pbs.twimg.com/media/HPPTvg9X0AAPC3R.jpg", link:"https://x.com/JumpTrailers/status/2086243883109753279", likes:1995, title:"Sydney Sweeney for SYRN"},
+  {img:"https://pbs.twimg.com/media/HPLBnpyWIAAJeod.jpg", link:"https://x.com/JumpTrailers/status/2085942470651560286", likes:1944, title:"Alysa Liu, Happy Birthday"},
+  {img:"https://pbs.twimg.com/media/HPLemn_XAAAQljO.jpg", link:"https://x.com/JumpTrailers/status/2085974338507825522", likes:1898, title:"Anne Hathaway for Vanity Fair"}
+    ]
   }
 
 
