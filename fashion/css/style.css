@@ -1,0 +1,307 @@
+/* ======================
+   FASHION SITE – CORE
+   ====================== */
+
+:root {
+  --bg: #0c0c0c;
+  --card: #161616;
+  --card-hover: #1e1e1e;
+  --text: #e8e8e8;
+  --muted: #999;
+  --accent: #ffffff;
+  --border: #2a2a2a;
+  --radius: 14px;
+  --shadow: 0 8px 30px rgba(0,0,0,0.45);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ---------- Header ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(12,12,12,0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+}
+
+.logo span {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.nav a {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-left: 24px;
+  transition: color 0.2s;
+}
+
+.nav a:hover {
+  color: var(--accent);
+}
+
+/* ---------- Page titles ---------- */
+.page-title {
+  text-align: center;
+  padding: 48px 20px 12px;
+}
+
+.page-title h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.page-title h2 {
+  font-size: 1.05rem;
+  color: var(--muted);
+  font-weight: 400;
+  margin-top: 6px;
+}
+
+/* ---------- Archive grid (homepage) ---------- */
+.archive {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px 20px 80px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.archive-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform 0.25s ease, background 0.25s;
+  cursor: pointer;
+}
+
+.archive-card:hover {
+  transform: translateY(-6px);
+  background: var(--card-hover);
+}
+
+.archive-card img {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  background: #222;
+}
+
+.archive-info {
+  padding: 16px 18px;
+}
+
+.archive-info .date {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.archive-info .title {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.archive-info .count {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+/* ---------- Collage grid ---------- */
+.grid {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px 20px 80px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform 0.22s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  background: #1a1a1a;
+}
+
+.card .info {
+  padding: 14px 16px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.card .info strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* ---------- Modal ---------- */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.92);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.2s ease;
+}
+
+.modal.open {
+  display: flex;
+}
+
+.modal-content {
+  position: relative;
+  max-width: min(90vw, 900px);
+  max-height: 90vh;
+  text-align: center;
+}
+
+.modal-content img {
+  max-width: 100%;
+  max-height: 78vh;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+}
+
+.modal-info {
+  margin-top: 18px;
+  font-size: 1rem;
+}
+
+.modal-info a {
+  color: var(--muted);
+  transition: color 0.2s;
+}
+
+.modal-info a:hover {
+  color: #fff;
+}
+
+.close {
+  position: absolute;
+  top: -48px;
+  right: 0;
+  font-size: 36px;
+  color: #fff;
+  cursor: pointer;
+  line-height: 1;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.close:hover {
+  opacity: 1;
+}
+
+/* ---------- Navigation between days ---------- */
+.day-nav {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  padding: 0 20px 30px;
+}
+
+.day-nav a {
+  padding: 10px 20px;
+  background: var(--card);
+  border-radius: 999px;
+  font-size: 0.9rem;
+  color: var(--muted);
+  transition: all 0.2s;
+}
+
+.day-nav a:hover {
+  background: var(--card-hover);
+  color: #fff;
+}
+
+/* ---------- Utilities ---------- */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.empty {
+  text-align: center;
+  padding: 80px 20px;
+  color: var(--muted);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 600px) {
+  .page-title h1 {
+    font-size: 1.5rem;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .archive {
+    grid-template-columns: 1fr;
+  }
+  .site-header {
+    padding: 14px 16px;
+  }
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Top 10 Looks</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="index.html" class="logo">Fashion<span>Archive</span></a>
+    <nav class="nav">
+      <a href="index.html">← All Days</a>
+    </nav>
+  </header>
+
+  <div class="page-title">
+    <h1 id="pageTitle">Top 10 Most Liked</h1>
+    <h2 id="pageDate"></h2>
+  </div>
+
+  <div class="day-nav" id="dayNav">
+    <!-- Previous / Next will be injected -->
+  </div>
+
+  <div class="grid" id="grid">
+    <!-- Cards injected by JS -->
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="modal" onclick="if(event.target===this) closeModal();">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">×</span>
+      <img id="modalImg" src="" alt="">
+      <div class="modal-info" id="modalInfo"></div>
+    </div>
+  </div>
+
+  <script src="data/collages.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // Load the correct collage based on ?id= parameter
+    const id = getQueryParam('id') || '2026-08-14';
+    const collage = getCollage(id);
+
+    if (collage) {
+      document.getElementById('pageTitle').textContent = collage.title;
+      document.getElementById('pageDate').textContent = collage.date;
+      document.title = `${collage.title} • ${collage.date}`;
+
+      renderCollage(collage.posts);
+
+      // Simple Previous / Next navigation
+      const sorted = [...collages]
+        .filter(c => c.posts && c.posts.length > 0)
+        .sort((a, b) => b.id.localeCompare(a.id));
+
+      const currentIndex = sorted.findIndex(c => c.id === id);
+      const nav = document.getElementById('dayNav');
+
+      let navHTML = '';
+      if (currentIndex < sorted.length - 1) {
+        const prev = sorted[currentIndex + 1];
+        navHTML += `<a href="collage.html?id=${prev.id}">← ${prev.date}</a>`;
+      }
+      if (currentIndex > 0) {
+        const next = sorted[currentIndex - 1];
+        navHTML += `<a href="collage.html?id=${next.id}">${next.date} →</a>`;
+      }
+      nav.innerHTML = navHTML;
+    } else {
+      document.getElementById('grid').innerHTML = `
+        <div class="empty">
+          Collage not found.<br>
+          <a href="index.html" style="color:#fff;margin-top:12px;display:inline-block;">← Back to archive</a>
+        </div>`;
+    }
+  </script>
+</body>
+</html>
