@@ -24,6 +24,25 @@ const collages = [
   */
   // ================================================================
 
+  
+           // ---------- August 16, 2026 ----------
+  {
+    id: "2026-08-16",
+    date: "August 16, 2026",
+    title: "Top 10 Most Liked • Last 24h",
+    posts: [
+  {img:"https://pbs.twimg.com/media/HPwd9tSX0AAdZp2.jpg", link:"https://x.com/beautifulcelebz/status/2088577279798518034", likes:5525, title:"Emilia Clarke by Vincent Peters, Esquire"},
+  {img:"https://pbs.twimg.com/media/HPyAwSxWYAAykuT.jpg", link:"https://x.com/JumpTrailers/status/2088685903145291835", likes:4739, title:"Inde Navarrette for Gap"},
+  {img:"https://pbs.twimg.com/media/HPyba_AWgAAOA_2.jpg", link:"https://x.com/BaddiesBae_/status/2088741269375742125", likes:4154, title:"Olivia Hopkins - Ole Miss"},
+  {img:"https://pbs.twimg.com/media/HPyZ55xWAAAqWT1.jpg", link:"https://x.com/JumpTrailers/status/2088713605361398072", likes:3450, title:"X-MEN cast photographed by Wes Ellis"},
+  {img:"https://pbs.twimg.com/media/HPxwWPNW8AASUKE.jpg", link:"https://x.com/JumpTrailers/status/2088667874336383404", likes:3204, title:"Inde Navarrette"},
+  {img:"https://pbs.twimg.com/media/HPyBW1PWMAAryJB.jpg", link:"https://x.com/beautyshowcase/status/2088701507206099168", likes:2954, title:"Melimtx (Albanian)"},
+  {img:"https://pbs.twimg.com/media/HPyoYZ3WsAAozcw.jpg", link:"https://x.com/JumpTrailers/status/2088729602688520610", likes:2885, title:"Sadie Sink at D23"},
+  {img:"https://pbs.twimg.com/media/HPy_BirW0AA9Gly.jpg", link:"https://x.com/JumpTrailers/status/2088754369462202746", likes:2288, title:"Inde Navarrette for Gap"},
+  {img:"https://pbs.twimg.com/media/HPyYPuKWwAAKN5D.jpg", link:"https://x.com/JumpTrailers/status/2088711806759965162", likes:2181, title:"Samara Weaving"},
+  {img:"https://pbs.twimg.com/media/HPzgCCFWgAEDvaN.jpg", link:"https://x.com/JumpTrailers/status/2088790672320905485", likes:2103, title:"Samara Weaving"}
+    ]
+  },
            // ---------- August 15, 2026 ----------
   {
     id: "2026-08-15",
