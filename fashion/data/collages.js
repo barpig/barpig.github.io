@@ -23,8 +23,60 @@ const collages = [
   },
   */
   // ================================================================
-
-  
+           // ---------- August 19, 2026 ----------
+  {
+    id: "2026-08-19",
+    date: "August 19, 2026",
+    title: "Top 10 Most Liked • Last 24h",
+    posts: [
+  {img:"https://pbs.twimg.com/media/HP-kh61WEAAVudH.jpg", link:"https://x.com/beautifulcelebz/status/2089569660484173897", likes:6504, title:"Victoria Justice 😍"},
+  {img:"https://pbs.twimg.com/media/HQAfKylWAAAcDxS.jpg", link:"https://x.com/beautyshowcase/status/2089734564855873974", likes:2596, title:"Elite genetics 🏆"},
+  {img:"https://pbs.twimg.com/media/HQAeST5W8AAr1Vm.jpg", link:"https://x.com/beautyshowcase/status/2089774330754498911", likes:1811, title:"Gym girls >>"},
+  {img:"https://pbs.twimg.com/media/HQAeLumXMAAJKu2.jpg", link:"https://x.com/beautyshowcase/status/2089703433817174216", likes:1646, title:"Good morning ❤️"},
+  {img:"https://pbs.twimg.com/media/HP-EBuPWkAAZLfD.jpg", link:"https://x.com/BaddiesBae_/status/2089534030144233525", likes:1368, title:"Morgan Mamolen - Alabama 🇺🇸"},
+  {img:"https://pbs.twimg.com/media/HQCTNMqXQAAJV5m.jpg", link:"https://x.com/BaddiesBae_/status/2089832097577922702", likes:704, title:"Lexi Figoras - Florida Atlantic 🇺🇸"},
+  {img:"https://pbs.twimg.com/media/HQCAFTqWwAAd-JA.jpg", link:"https://x.com/Kevin10919728/status/2089811179354951963", likes:653, title:"CINDY CRAWFORD"},
+  {img:"https://pbs.twimg.com/media/HQAwem9XwAA1vRu.jpg", link:"https://x.com/Kevin10919728/status/2089723692087382052", likes:649, title:"SOFIA VERGARA & HEIDI KLUM"},
+  {img:"https://pbs.twimg.com/media/HQAVFFEWQAE9CHd.jpg", link:"https://x.com/Kevin10919728/status/2089693469493088405", likes:619, title:"LACEY CHABERT"},
+  {img:"https://pbs.twimg.com/media/HQBxlB3WUAATxaH.jpg", link:"https://x.com/beautifulcelebz/status/2089795117875921360", likes:601, title:"Jessica Alba 😍"}
+    ]
+  }, 
+  // ---------- August 18, 2026 ----------
+  {
+    id: "2026-08-18",
+    date: "August 18, 2026",
+    title: "Top 10 Most Liked • Last 24h",
+    posts: [
+  {img:"https://pbs.twimg.com/media/HP-XGIwWsAAeSJz.jpg", link:"https://x.com/JumpTrailers/status/2089554889068208345", likes:2924, title:"Samara Weaving"},
+  {img:"https://pbs.twimg.com/media/HP9NmhSWcAAXySx.jpg", link:"https://x.com/JumpTrailers/status/2089474081733116210", likes:2423, title:"Inde Navarrette for Gap"},
+  {img:"https://pbs.twimg.com/media/HP9t2plW0AAdMbA.jpg", link:"https://x.com/JumpTrailers/status/2089509549636039068", likes:2147, title:"Inde Navarrette"},
+  {img:"https://pbs.twimg.com/media/HP-UIX6XUAAbvqG.jpg", link:"https://x.com/JumpTrailers/status/2089551642823700762", likes:2018, title:"Megan Lawless"},
+  {img:"https://pbs.twimg.com/media/HP-kh61WEAAVudH.jpg", link:"https://x.com/beautifulcelebz/status/2089569660484173897", likes:1463, title:"Victoria Justice"},
+  {img:"https://pbs.twimg.com/media/HP9LfZuXMAEmDs2.jpg", link:"https://x.com/BaddiesBae_/status/2089471896320389142", likes:1421, title:"Maggie Adler - Illinois"},
+  {img:"https://pbs.twimg.com/media/HP-gEpTWsAAXRQe.jpg", link:"https://x.com/JumpTrailers/status/2089564761075728746", likes:1173, title:"Madelaine Petsch, Happy Birthday"},
+  {img:"https://pbs.twimg.com/media/HP-EBuPWkAAZLfD.jpg", link:"https://x.com/BaddiesBae_/status/2089534030144233525", likes:909, title:"Morgan Mamolen - Alabama"},
+  {img:"https://pbs.twimg.com/media/HP93aaxXQAA1kVf.jpg", link:"https://x.com/JumpTrailers/status/2089520069189542092", likes:823, title:"Auli'i Cravalho"},
+  {img:"https://pbs.twimg.com/media/HP9b1BaWcAAuwkd.jpg", link:"https://x.com/JumpTrailers/status/2089489729876119776", likes:815, title:"Dafne Keen"}
+    ]
+  }, 
+           // ---------- August 17, 2026 ----------
+  {
+    id: "2026-08-17",
+    date: "August 17, 2026",
+    title: "Top 10 Most Liked • Last 24h",
+    posts: [
+  {img:"https://pbs.twimg.com/media/HP466XHWYAAqgXd.jpg", link:"https://x.com/BaddiesBae_/status/2089173161518473340", likes:2030, title:"Amanda Chan"},
+  {img:"https://pbs.twimg.com/media/HP4fn8sXsAAWEFG.jpg", link:"https://x.com/JumpTrailers/status/2089142168233386180", likes:1889, title:"Sadie Sink"},
+  {img:"https://pbs.twimg.com/media/HP4S0CzWoAA-hl_.jpg", link:"https://x.com/JumpTrailers/status/2089128059072868358", likes:1605, title:"Inde Navarrette for Ashot Magazine"},
+  {img:"https://pbs.twimg.com/media/HP34aRqWAAANAvW.jpg", link:"https://x.com/JumpTrailers/status/2089098942487441727", likes:1262, title:"Inde Navarrette"},
+  {img:"https://pbs.twimg.com/media/HP4q8o9WEAAI6o4.jpg", link:"https://x.com/JumpTrailers/status/2089154507183714642", likes:1104, title:"Inde Navarrette"},
+  {img:"https://pbs.twimg.com/media/HP49QoSXUAE-Sjj.jpg", link:"https://x.com/JumpTrailers/status/2089174886556000527", likes:1055, title:"Sydney Sweeney"},
+  {img:"https://pbs.twimg.com/media/HP4dwaxXoAA5L0v.jpg", link:"https://x.com/JumpTrailers/status/2089140107865358592", likes:958, title:"Samara Weaving via IG"},
+  {img:"https://pbs.twimg.com/media/HP4MY2qXAAAi18h.jpg", link:"https://x.com/JumpTrailers/status/2089120905729393116", likes:860, title:"Samara Weaving"},
+  {img:"https://pbs.twimg.com/media/HP5KsoibEAAPzWM.jpg", link:"https://x.com/JumpTrailers/status/2089189453906800930", likes:644, title:"Sadie Sink"},
+  {img:"https://pbs.twimg.com/media/HP5vr0QXwAEHsjO.jpg", link:"https://x.com/JumpTrailers/status/2089230123031568634", likes:622, title:"Hailee Steinfeld"}
+    ]
+  }, 
            // ---------- August 16, 2026 ----------
   {
     id: "2026-08-16",
