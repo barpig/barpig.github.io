@@ -3,9 +3,8 @@ const CACHE_NAME = 'ticker-rendo-cache-v1';
 
 // Files to cache
 const urlsToCache = [
-  '/',
-  '/index.html',
-  '/styles.css', // If you extract your CSS into a separate file
+  './',
+  'index.html',
   'https://s3.tradingview.com/tv.js' // Cache the TradingView script
 ];
 
