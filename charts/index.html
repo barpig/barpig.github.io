@@ -18,11 +18,38 @@
 		<script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
 		<script type="text/javascript">
 			window.tv_charts = [];
+			
+			// Initial defaults
 			window.tv_interval = "D";
 			window.tv_style = "1";
-			const savedStudies = localStorage.getItem('tv_applied_studies');
-			window.tv_applied_studies = savedStudies && Array.isArray(JSON.parse(savedStudies)) ? JSON.parse(savedStudies) : ["BB@tv-basicstudies"];
-			
+			let initialStudies = ["BB@tv-basicstudies"];
+
+			// Load from URL first
+			const urlParams = new URLSearchParams(window.location.search);
+			if (urlParams.get('interval')) window.tv_interval = urlParams.get('interval');
+			if (urlParams.get('style')) window.tv_style = urlParams.get('style');
+			if (urlParams.get('studies')) {
+				initialStudies = urlParams.get('studies').split(',').filter(s => s !== '');
+			} else {
+				// Fallback to localStorage if no URL parameters are present
+				const savedStudies = localStorage.getItem('tv_applied_studies');
+				if (savedStudies) {
+					try {
+						const parsed = JSON.parse(savedStudies);
+						if (Array.isArray(parsed)) initialStudies = parsed;
+					} catch(e) {}
+				}
+			}
+			window.tv_applied_studies = initialStudies;
+
+			window.updateURLParams = function() {
+				let params = new URLSearchParams(window.location.search);
+				params.set('interval', window.tv_interval);
+				params.set('style', window.tv_style);
+				params.set('studies', window.tv_applied_studies.join(','));
+				window.history.replaceState({}, '', `${window.location.pathname}?${params.toString()}${window.location.hash}`);
+			}
+
 			window.tv_refresh = function() {
 				window.tv_charts.forEach(function(e) {
 				  e.options.interval = window.tv_interval;
@@ -40,12 +67,14 @@
 			window.setInterval = function(val) {
 				window.updateActiveState(window.tv_interval, val, 'interval');
 				window.tv_interval = val;
+				window.updateURLParams();
 				window.tv_refresh();
 			}
 			
 			window.setStyle = function(val) {
 				window.updateActiveState(window.tv_style, val, 'style');
 				window.tv_style = val;
+				window.updateURLParams();
 				window.tv_refresh();	
 			}
 			
@@ -58,6 +87,7 @@
 			
 			window.tv_saveAndRefresh = function() {
 				localStorage.setItem('tv_applied_studies', JSON.stringify(window.tv_applied_studies));
+				window.updateURLParams();
 				window.tv_refresh();
 				window.updateIndicatorUI();
 			}
@@ -321,7 +351,7 @@ window.updateIndicatorUI = function() {
 					<div class="ctrls-tools">
 						<button class="ctrl-btn" onclick="window.clearIndicators()">Clear Indicators</button>
 						<div class="dropdown">
-							<button onclick="myFunction()" class="dropbtn">Add Indicator ▾</button>
+							<button onclick="myFunction()" class="dropbtn">Add 2 Indicators ▾</button>
 							<div id="myDropdown" class="dropdown-content">
 								<div class="indicator-row"><a href="#" data-study="MAExp@tv-basicstudies" onclick="window.toggleIndicator('MAExp@tv-basicstudies')">EMA (21/etc)</a></div>
 								<div class="indicator-row"><a href="#" data-study="MASimple@tv-basicstudies" onclick="window.toggleIndicator('MASimple@tv-basicstudies')">SMA (200/etc)</a></div>
