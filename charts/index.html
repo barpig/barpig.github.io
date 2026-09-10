@@ -20,6 +20,8 @@
 			window.tv_charts = [];
 			window.tv_interval = "D";
 			window.tv_style = "1";
+			const savedStudies = localStorage.getItem('tv_applied_studies');
+			window.tv_applied_studies = savedStudies && Array.isArray(JSON.parse(savedStudies)) ? JSON.parse(savedStudies) : ["BB@tv-basicstudies"];
 			
 			window.tv_refresh = function() {
 				window.tv_charts.forEach(function(e) {
@@ -28,6 +30,8 @@
 				  if( e.options.style != '3' ) { 
 				  	e.options.style = window.tv_style;
 				  }
+				  e.options.studies = window.tv_applied_studies;
+				  e.options.hide_legend = true;
 					
 				  e.reload();
 				});	
@@ -52,7 +56,30 @@
 				document.getElementById("is-" + type + "-" + newState).classList.add('active');
 			}
 			
+			window.tv_saveAndRefresh = function() {
+				localStorage.setItem('tv_applied_studies', JSON.stringify(window.tv_applied_studies));
+				window.tv_refresh();
+				window.updateIndicatorUI();
+			}
+
+			window.toggleIndicator = function(study) {
+				const index = window.tv_applied_studies.indexOf(study);
+				if (index > -1) {
+					window.tv_applied_studies.splice(index, 1);
+				} else {
+					window.tv_applied_studies.push(study);
+				}
+				window.tv_saveAndRefresh();
+			}
+
+			window.clearIndicators = function() {
+				window.tv_applied_studies = [];
+				window.tv_saveAndRefresh();
+			}
+
 			window.init = function() {
+				// Initialize indicators from existing chart state
+				window.updateIndicatorUI();
 				window.updateActiveState(null, window.tv_interval, 'interval');
 				window.updateActiveState(null, window.tv_style, 'style');
 			}
@@ -66,17 +93,46 @@ function myFunction() {
 }
 
 window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
+  if (!event.target.closest('.dropdown')) {
     var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
+    for (var i = 0; i < dropdowns.length; i++) {
       var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
+      openDropdown.classList.remove('show');
     }
   }
 }
+
+window.updateIndicatorUI = function() {
+    // Update ticker labels
+    for (let i = 1; i <= 12; i++) {
+        const label = document.getElementById('label-' + i);
+        if (label) {
+            const ticker = getParameter(i.toString());
+            if (ticker) {
+                // Extract ticker, default to '---' if not found
+                const symbolOnly = ticker.includes(':') ? ticker.split(':').pop() : ticker;
+                label.innerText = symbolOnly || '---';
+                label.style.display = 'block';
+            } else {
+                label.style.display = 'none';
+            }
+        }
+    }
+
+    const rows = document.querySelectorAll('#myDropdown .indicator-row');
+    rows.forEach(row => {
+        const link = row.querySelector('a');
+        const study = link.getAttribute('data-study');
+        const isActive = window.tv_applied_studies.includes(study);
+
+        if (isActive) {
+            link.classList.add('indicator-active');
+        } else {
+            link.classList.remove('indicator-active');
+        }
+    });
+}
+
 
 
 
@@ -102,14 +158,17 @@ window.onclick = function(event) {
 			.grid {
 				display: grid;
 				grid-template-columns: 1fr 1fr 1fr 1fr;
-				grid-template-rows: 25px 1fr 1fr 1fr;
+				grid-template-rows: auto 1fr 1fr 1fr;
 				
 				min-height: 100vh;
 				width: 100vw;
 			}
+			.module {
+				position: relative;
+			}
 			.controls {
 				grid-column-start: 1;
-				grid-column-end: 4;
+				grid-column-end: 5;
 				background: #0A1C28;
 				
 				display: flex;
@@ -137,7 +196,7 @@ window.onclick = function(event) {
 				color: #fff;
 			}
 			
-			.ctrls-interval, .ctrls-style {
+			.ctrls-interval, .ctrls-style, .ctrls-tools {
 				padding: 0 25px;
 				flex: 0 0 auto;	
 			}
@@ -165,22 +224,65 @@ window.onclick = function(event) {
   display: none;
   position: absolute;
   background-color: #41848F;
-  min-width: 850px;
+  min-width: 300px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;}
 
+.dropdown-content .indicator-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+}
+
 .dropdown-content a {
-  color: black;
-  padding: 12px 16px;
+  color: #EEE9D1;
+  padding: 8px 0;
+  flex-grow: 1;
   text-decoration: none;
   display: block;}
   
-.dropdown-content a:hover {background-color: #97C0B7}
+.dropdown-content .indicator-row:hover {background-color: #97C0B7}
 .show {display:block;}
 
+.indicator-active {
+	background-color: #4b9ba8 !important;
+	border-left: 4px solid #EEE9D1;
+	padding-left: 12px !important;
+	color: #fff !important;
+}
+.color-presets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    padding-left: 10px;
+    justify-content: flex-end;
+}
+.color-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: transform 0.1s;
+}
+.color-dot:hover { transform: scale(1.2); border-color: #fff; }
+.color-dot.selected { border: 2px solid #fff; box-shadow: 0 0 5px #fff; }
 
-
-
+.chart-label {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    z-index: 999;
+    color: #FFF;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: bold;
+    pointer-events: none;
+    border: 1px solid #41848F;
+}
 
 		</style>
 		<!-- Google Tag Manager -->
@@ -216,29 +318,28 @@ window.onclick = function(event) {
 						<button id="is-interval-W" class="ctrl-btn interval" onclick="window.setInterval('W')">Week</button>
 						<button id="is-interval-M" class="ctrl-btn interval" onclick="window.setInterval('M')">Month</button>
 					</div>
+					<div class="ctrls-tools">
+						<button class="ctrl-btn" onclick="window.clearIndicators()">Clear Indicators</button>
+						<div class="dropdown">
+							<button onclick="myFunction()" class="dropbtn">Add Indicator ▾</button>
+							<div id="myDropdown" class="dropdown-content">
+								<div class="indicator-row"><a href="#" data-study="MAExp@tv-basicstudies" onclick="window.toggleIndicator('MAExp@tv-basicstudies')">EMA (21/etc)</a></div>
+								<div class="indicator-row"><a href="#" data-study="MASimple@tv-basicstudies" onclick="window.toggleIndicator('MASimple@tv-basicstudies')">SMA (200/etc)</a></div>
+								<div class="indicator-row"><a href="#" data-study="VWAP@tv-basicstudies" onclick="window.toggleIndicator('VWAP@tv-basicstudies')">VWAP</a></div>
+								<div class="indicator-row"><a href="#" data-study="AverageTrueRange@tv-basicstudies" onclick="window.toggleIndicator('AverageTrueRange@tv-basicstudies')">ATR</a></div>
+								<div class="indicator-row"><a href="#" data-study="RSI@tv-basicstudies" onclick="window.toggleIndicator('RSI@tv-basicstudies')">RSI</a></div>
+								<div class="indicator-row"><a href="#" data-study="IchimokuCloud@tv-basicstudies" onclick="window.toggleIndicator('IchimokuCloud@tv-basicstudies')">Ichimoku Cloud</a></div>
+								<div class="indicator-row"><a href="#" data-study="LinearRegression@tv-basicstudies" onclick="window.toggleIndicator('LinearRegression@tv-basicstudies')">Linear Regression</a></div>
+								<div class="indicator-row"><a href="#" data-study="MACD@tv-basicstudies" onclick="window.toggleIndicator('MACD@tv-basicstudies')">MACD</a></div>
+								<div class="indicator-row"><a href="#" data-study="BB@tv-basicstudies" onclick="window.toggleIndicator('BB@tv-basicstudies')">Bollinger Bands</a></div>
+								<div class="indicator-row"><a href="#" data-study="Volume@tv-basicstudies" onclick="window.toggleIndicator('Volume@tv-basicstudies')">Volume</a></div>
+							</div>
+						</div>
+					</div>
 				</div>
-				<article class="module">
-						<script type="text/javascript">
-						window.tv_charts.push( new TradingView.widget({
-						  "autosize": true,
-						  "symbol": "RENDO.EU.ORG",
-						  "interval": window.tv_interval,
-						  "timezone": "America/New_York",
-						  "theme": "Dark",
-						  "style": window.tv_style,
-						  "locale": "en",
-						  "toolbar_bg": "rgba(0, 0, 0, 1)",
-						  "enable_publishing": false,
-						  "hide_top_toolbar": true,
-						  "allow_symbol_change": true,
-						  "hide_volume": true,
-						  "save_image": false,
-						  "hideideas": true
-						}));
-						</script>
-				</article>
 
 				<article class="module">
+						<div id="label-1" class="chart-label"></div>
 						<script type="text/javascript">
 						window.tv_charts.push( new TradingView.widget({
 						  "autosize": true,
@@ -250,11 +351,11 @@ window.onclick = function(event) {
 						  "locale": "en",
 						  "toolbar_bg": "rgba(0, 0, 0, 1)",
 						  "enable_publishing": false,
+						  "hide_legend": true,
 						  "hide_top_toolbar": true,
 						  "allow_symbol_change": true,
 						  "hide_volume": true,
-						  "studies": [
-						  "BB@tv-basicstudies","LinearRegression@tv-basicstudies"],
+						  "studies": window.tv_applied_studies,
 						  "save_image": false,
 						  "hideideas": true
 						}));
@@ -262,6 +363,7 @@ window.onclick = function(event) {
 				</article>
 
 				<article class="module">
+						<div id="label-2" class="chart-label"></div>
 						<script type="text/javascript">
 						window.tv_charts.push( new TradingView.widget({
 						  "autosize": true,
@@ -273,11 +375,11 @@ window.onclick = function(event) {
 						  "locale": "en",
 						  "toolbar_bg": "rgba(0, 0, 0, 1)",
 						  "enable_publishing": false,
+						  "hide_legend": true,
 						  "hide_top_toolbar": true,
 						  "allow_symbol_change": true,
 						  "hide_volume": true,
-						  "studies": [
-						  "BB@tv-basicstudies","LinearRegression@tv-basicstudies"],
+						  "studies": window.tv_applied_studies,
 						  "save_image": false,
 						  "hideideas": true
 						}));
@@ -285,6 +387,7 @@ window.onclick = function(event) {
 				</article>
 
 				<article class="module">
+						<div id="label-3" class="chart-label"></div>
 						<script type="text/javascript">
 						window.tv_charts.push( new TradingView.widget({
 						  "autosize": true,
@@ -296,11 +399,11 @@ window.onclick = function(event) {
 						  "locale": "en",
 						  "toolbar_bg": "rgba(0, 0, 0, 1)",
 						  "enable_publishing": false,
+						  "hide_legend": true,
 						  "hide_top_toolbar": true,
 						  "allow_symbol_change": true,
 						  "hide_volume": true,
-						  "studies": [
-						  "BB@tv-basicstudies","LinearRegression@tv-basicstudies"],
+						  "studies": window.tv_applied_studies,
 						  "save_image": false,
 						  "hideideas": true
 						}));
@@ -308,6 +411,7 @@ window.onclick = function(event) {
 				</article>
 
 				<article class="module">
+						<div id="label-4" class="chart-label"></div>
 						<script type="text/javascript">
 						window.tv_charts.push( new TradingView.widget({
 						  "autosize": true,
@@ -319,11 +423,11 @@ window.onclick = function(event) {
 						  "locale": "en",
 						  "toolbar_bg": "rgba(0, 0, 0, 1)",
 						  "enable_publishing": false,
+						  "hide_legend": true,
 						  "hide_top_toolbar": true,
 						  "allow_symbol_change": true,
 						  "hide_volume": true,
-						  "studies": [
-						  "BB@tv-basicstudies","LinearRegression@tv-basicstudies"],
+						  "studies": window.tv_applied_studies,
 						  "save_image": false,
 						  "hideideas": true
 						}));
@@ -331,6 +435,7 @@ window.onclick = function(event) {
 				</article>
 
 				<article class="module">
+						<div id="label-5" class="chart-label"></div>
 						<script type="text/javascript">
 						window.tv_charts.push( new TradingView.widget({
 						  "autosize": true,
@@ -342,11 +447,11 @@ window.onclick = function(event) {
 						  "locale": "en",
 						  "toolbar_bg": "rgba(0, 0, 0, 1)",
 						  "enable_publishing": false,
+						  "hide_legend": true,
 						  "hide_top_toolbar": true,
 						  "allow_symbol_change": true,
 						  "hide_volume": true,
-						  "studies": [
-						  "BB@tv-basicstudies","LinearRegression@tv-basicstudies"],
+						  "studies": window.tv_applied_studies,
 						  "save_image": false,
 						  "hideideas": true
 						}));
@@ -354,6 +459,7 @@ window.onclick = function(event) {
 				</article>
 
 				<article class="module">
+						<div id="label-6" class="chart-label"></div>
 						<script type="text/javascript">
 						window.tv_charts.push( new TradingView.widget({
 						  "autosize": true,
@@ -365,11 +471,11 @@ window.onclick = function(event) {
 						  "locale": "en",
 						  "toolbar_bg": "rgba(0, 0, 0, 1)",
 						  "enable_publishing": false,
+						  "hide_legend": true,
 						  "hide_top_toolbar": true,
 						  "allow_symbol_change": true,
 						  "hide_volume": true,
-						  "studies": [
-						  "BB@tv-basicstudies","LinearRegression@tv-basicstudies"],
+						  "studies": window.tv_applied_studies,
 						  "save_image": false,
 						  "hideideas": true
 						}));
@@ -377,6 +483,7 @@ window.onclick = function(event) {
 				</article>
 
 				<article class="module">
+						<div id="label-7" class="chart-label"></div>
 						<script type="text/javascript">
 						window.tv_charts.push( new TradingView.widget({
 						  "autosize": true,
@@ -388,11 +495,11 @@ window.onclick = function(event) {
 						  "locale": "en",
 						  "toolbar_bg": "rgba(0, 0, 0, 1)",
 						  "enable_publishing": false,
+						  "hide_legend": true,
 						  "hide_top_toolbar": true,
 						  "allow_symbol_change": true,
 						  "hide_volume": true,
-						  "studies": [
-						  "BB@tv-basicstudies","LinearRegression@tv-basicstudies"],
+						  "studies": window.tv_applied_studies,
 						  "save_image": false,
 						  "hideideas": true
 						}));
@@ -400,6 +507,7 @@ window.onclick = function(event) {
 				</article>
 
 				<article class="module">
+						<div id="label-8" class="chart-label"></div>
 						<script type="text/javascript">
 						window.tv_charts.push( new TradingView.widget({
 						  "autosize": true,
@@ -411,11 +519,11 @@ window.onclick = function(event) {
 						  "locale": "en",
 						  "toolbar_bg": "rgba(0, 0, 0, 1)",
 						  "enable_publishing": false,
+						  "hide_legend": true,
 						  "hide_top_toolbar": true,
 						  "allow_symbol_change": true,
 						  "hide_volume": true,
-						  "studies": [
-						  "BB@tv-basicstudies","LinearRegression@tv-basicstudies"],
+						  "studies": window.tv_applied_studies,
 						  "save_image": false,
 						  "hideideas": true
 						}));
@@ -423,6 +531,7 @@ window.onclick = function(event) {
 				</article>
 
 				<article class="module">
+						<div id="label-9" class="chart-label"></div>
 						<script type="text/javascript">
 						window.tv_charts.push( new TradingView.widget({
 						  "autosize": true,
@@ -434,11 +543,11 @@ window.onclick = function(event) {
 						  "locale": "en",
 						  "toolbar_bg": "rgba(0, 0, 0, 1)",
 						  "enable_publishing": false,
+						  "hide_legend": true,
 						  "hide_top_toolbar": true,
 						  "allow_symbol_change": true,
 						  "hide_volume": true,
-						  "studies": [
-						  "BB@tv-basicstudies","LinearRegression@tv-basicstudies"],
+						  "studies": window.tv_applied_studies,
 						  "save_image": false,
 						  "hideideas": true
 						}));
@@ -446,6 +555,7 @@ window.onclick = function(event) {
 				</article>
 
 				<article class="module">
+						<div id="label-10" class="chart-label"></div>
 						<script type="text/javascript">
 						window.tv_charts.push( new TradingView.widget({
 						  "autosize": true,
@@ -457,11 +567,11 @@ window.onclick = function(event) {
 						  "locale": "en",
 						  "toolbar_bg": "rgba(0, 0, 0, 1)",
 						  "enable_publishing": false,
+						  "hide_legend": true,
 						  "hide_top_toolbar": true,
 						  "allow_symbol_change": true,
 						  "hide_volume": true,
-						  "studies": [
-						  "BB@tv-basicstudies","LinearRegression@tv-basicstudies"],
+						  "studies": window.tv_applied_studies,
 						  "save_image": false,
 						  "hideideas": true
 						}));
@@ -469,6 +579,7 @@ window.onclick = function(event) {
 				</article>
 
 				<article class="module">
+						<div id="label-11" class="chart-label"></div>
 						<script type="text/javascript">
 						window.tv_charts.push( new TradingView.widget({
 						  "autosize": true,
@@ -480,11 +591,11 @@ window.onclick = function(event) {
 						  "locale": "en",
 						  "toolbar_bg": "rgba(0, 0, 0, 1)",
 						  "enable_publishing": false,
+						  "hide_legend": true,
 						  "hide_top_toolbar": true,
 						  "allow_symbol_change": true,
 						  "hide_volume": true,
-						  "studies": [
-						  "BB@tv-basicstudies","LinearRegression@tv-basicstudies"],
+						  "studies": window.tv_applied_studies,
 						  "save_image": false,
 						  "hideideas": true
 						}));
@@ -492,6 +603,7 @@ window.onclick = function(event) {
 				</article>
 
 				<article class="module">
+						<div id="label-12" class="chart-label"></div>
 						<script type="text/javascript">
 						window.tv_charts.push( new TradingView.widget({
 						  "autosize": true,
@@ -503,11 +615,11 @@ window.onclick = function(event) {
 						  "locale": "en",
 						  "toolbar_bg": "rgba(0, 0, 0, 1)",
 						  "enable_publishing": false,
+						  "hide_legend": true,
 						  "hide_top_toolbar": true,
 						  "allow_symbol_change": true,
 						  "hide_volume": true,
-						  "studies": [
-						  "BB@tv-basicstudies","LinearRegression@tv-basicstudies"],
+						  "studies": window.tv_applied_studies,
 						  "save_image": false,
 						  "hideideas": true
 						}));

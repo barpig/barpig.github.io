@@ -286,6 +286,13 @@
             }
         }, 300));
 
+        // Re-load chart on window resize to update responsive height
+        window.addEventListener('resize', debounce(function() {
+            if (currentTicker) {
+                loadStockData(currentTicker, currentInterval);
+            }
+        }, 250));
+
         // Deselect the input box when Enter is pressed, but keep the ticker in the field
         input.addEventListener('keydown', function(e) {
             if (e.key === 'Enter') {
@@ -371,6 +378,7 @@
                 "locale": "en",
                 "toolbar_bg": "#f1f3f6",
                 "hide_top_toolbar": true, // Disable the widget's toolbar to prevent untracked interval changes
+                "hide_legend": true, // Auto-hide the ticker and indicator legend
                 "enable_publishing": false,
                 "allow_symbol_change": true,
                 "hide_volume": true, // Hide the default volume overlay on the main chart
