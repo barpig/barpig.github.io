@@ -3,6 +3,12 @@
 // ============================================
 
 // ----- Modal -----
+function escapeHTML(str) {
+  const p = document.createElement('p');
+  p.textContent = str;
+  return p.innerHTML;
+}
+
 function openModal(imgSrc, link, likes, title) {
   const modal = document.getElementById('modal');
   const modalImg = document.getElementById('modalImg');
@@ -35,7 +41,7 @@ document.addEventListener('keydown', (e) => {
 function makeNameLinks(title) {
   // The whole title becomes a searchable tag link
   const encoded = encodeURIComponent(title);
-  return `<a href="tag.html?q=${encoded}" class="tag-link" onclick="event.stopPropagation()">${title}</a>`;
+  return `<a href="tag.html?q=${encoded}" class="tag-link" onclick="event.stopPropagation()">${escapeHTML(title)}</a>`;
 }
 
 // ----- Render a collage grid -----
