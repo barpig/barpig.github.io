@@ -122,12 +122,16 @@ function myFunction() {
   document.getElementById("myDropdown").classList.toggle("show");
 }
 
+function toggleLayouts() {
+  document.getElementById("layoutDropdown").classList.toggle("show");
+}
+
 window.onclick = function(event) {
   if (!event.target.closest('.dropdown')) {
     var dropdowns = document.getElementsByClassName("dropdown-content");
     for (var i = 0; i < dropdowns.length; i++) {
       var openDropdown = dropdowns[i];
-      openDropdown.classList.remove('show');
+      if (openDropdown.classList.contains('show')) openDropdown.classList.remove('show');
     }
   }
 }
@@ -363,6 +367,19 @@ window.updateIndicatorUI = function() {
 								<div class="indicator-row"><a href="#" data-study="MACD@tv-basicstudies" onclick="window.toggleIndicator('MACD@tv-basicstudies')">MACD</a></div>
 								<div class="indicator-row"><a href="#" data-study="BB@tv-basicstudies" onclick="window.toggleIndicator('BB@tv-basicstudies')">Bollinger Bands</a></div>
 								<div class="indicator-row"><a href="#" data-study="Volume@tv-basicstudies" onclick="window.toggleIndicator('Volume@tv-basicstudies')">Volume</a></div>
+							</div>
+						</div>
+						<div class="dropdown" style="margin-left: 5px;">
+							<button onclick="toggleLayouts()" class="dropbtn">Layouts ▾</button>
+							<div id="layoutDropdown" class="dropdown-content">
+								<div class="indicator-row"><a href="?1=US500&2=US100&3=ETHUSDT&4=BTCUSDT&5=CAPITALCOM%3ADXY&6=USOIL&7=SILVER&8=GOLD&9=CADUSD&10=JPYUSD&11=GBPUSD&12=EURUSD#nav">Default</a></div>
+								<div class="indicator-row"><a href="?1=BINANCE%3ABTCUSDT&2=BINANCE%3AETHUSDT&3=BINANCE%3ASOLUSDT&4=BINANCE%3AXRPUSDT&5=BINANCE%3ABNBUSDT&6=BINANCE%3AZECUSDT&7=BINANCE%3ADOGEUSDT&8=BINANCE%3ASUIUSDT&9=BINANCE%3AADAUSDT&10=BINANCE%3ALINKUSDT&11=BINANCE%3ANEARUSDT&12=BINANCE%3AUNIUSDT&interval=30&style=1&studies=LinearRegression%40tv-basicstudies%2CBB%40tv-basicstudies">Binance</a></div>
+								<div class="indicator-row"><a href="?1=COINBASE%3ABTCUSD&2=COINBASE%3AETHUSD&3=COINBASE%3ASOLUSD&4=COINBASE%3AXRPUSD&5=COINBASE%3AZECUSD&6=COINBASE%3AHYPEUSD&7=COINBASE%3ADOGEUSD&8=COINBASE%3ASUIUSD&9=COINBASE%3AADAUSD&10=COINBASE%3ALINKUSD&11=COINBASE%3ANEARUSD&12=COINBASE%3AUNIUSD&interval=30&style=1&studies=LinearRegression%40tv-basicstudies%2CBB%40tv-basicstudies">Coinbase</a></div>
+								<div class="indicator-row"><a href="?1=HYPERLIQUID%3ABTCUSDC.P&2=HYPERLIQUID%3AETHUSDC.P&3=HYPERLIQUID%3AHYPEUSDC.P&4=HYPERLIQUID%3AZECUSDC.P&5=HYPERLIQUID%3ASOLUSDC.P&6=HYPERLIQUID%3AXRPUSDC.P&7=HYPERLIQUID%3ADOGEUSDC.P&8=HYPERLIQUID%3ASUIUSDC.P&9=HYPERLIQUID%3ABNBUSDC.P&10=HYPERLIQUID%3ALINKUSDC.P&11=HYPERLIQUID%3AAAVEUSDC.P&12=HYPERLIQUID%3AUNIUSDC.P&interval=30&style=1&studies=LinearRegression%40tv-basicstudies%2CBB%40tv-basicstudies">Hyperliquid</a></div>
+								<div class="indicator-row"><a href="?1=HIP3XYZ%3ASKHXUSDC.P&2=HIP3XYZ%3AXYZ100USDC.P&3=HIP3XYZ%3ASNDKUSDC.P&4=HIP3XYZ%3ACLUSDC.P&5=HIP3XYZ%3ASP500USDC.P&6=HIP3XYZ%3AGOLDUSDC.P&7=HIP3XYZ%3ASILVERUSDC.P&8=HIP3XYZ%3ANVDAUSDC.P&9=HIP3XYZ%3AMUUSDC.P&10=HIP3XYZ%3AJPYUSDC.P&11=HIP3XYZ%3ASOXLUSDC.P&12=HIP3XYZ%3ADRAMUSDC.P&interval=30&style=1&studies=LinearRegression%40tv-basicstudies%2CBB%40tv-basicstudies">HIP3XYZ</a></div>
+								<div class="indicator-row"><a href="?1=CAPITALCOM%3AEURUSD&2=CAPITALCOM%3AUSDJPY&3=CAPITALCOM%3AGBPUSD&4=CAPITALCOM%3AUSDCAD&5=CAPITALCOM%3AAUDUSD&6=CAPITALCOM%3AUSDCHF&7=CAPITALCOM%3ANZDUSD&8=CAPITALCOM%3AEURJPY&9=CAPITALCOM%3AGBPJPY&10=CAPITALCOM%3AEURGBP&11=CAPITALCOM%3AUSDCNH&12=CAPITALCOM%3ADXY&interval=30&style=1&studies=LinearRegression%40tv-basicstudies%2CBB%40tv-basicstudies">Capital.com FX</a></div>
+								<div class="indicator-row"><a href="?1=OANDA%3AEURUSD&2=OANDA%3AUSDJPY&3=OANDA%3AGBPUSD&4=OANDA%3AUSDCAD&5=OANDA%3AAUDUSD&6=OANDA%3AUSDCHF&7=OANDA%3ANZDUSD&8=OANDA%3AEURJPY&9=OANDA%3AGBPJPY&10=OANDA%3AEURGBP&11=OANDA%3AUSDCNH&12=TVC%3ADXY&interval=30&style=1&studies=LinearRegression%40tv-basicstudies%2CBB%40tv-basicstudies">OANDA FX</a></div>
+								<div class="indicator-row"><a href="?1=NASDAQ%3ANVDA&2=NASDAQ%3AMU&3=NASDAQ%3AAAPL&4=NASDAQ%3AMSFT&5=NASDAQ%3AAMZN&6=NASDAQ%3AMETA&7=NASDAQ%3AGOOGL&8=NASDAQ%3ATSLA&9=NASDAQ%3AAVGO&10=NASDAQ%3AAMD&11=NASDAQ%3ANFLX&12=NASDAQ%3APLTR&interval=30&style=1&studies=LinearRegression%40tv-basicstudies%2CBB%40tv-basicstudies">NASDAQ</a></div>
 							</div>
 						</div>
 					</div>
