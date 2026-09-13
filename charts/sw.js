@@ -1,4 +1,4 @@
-const CACHE_NAME = 'rendo-charts-v4';
+const CACHE_NAME = 'rendo-charts-v5';
 const urlsToCache = [
   './',
   'index.html'
@@ -10,7 +10,7 @@ self.addEventListener('install', event => {
       .then(cache => {
         console.log('Opened cache');
         return cache.addAll(urlsToCache);
-      })
+      }).then(() => self.skipWaiting())
   );
 });
 
@@ -37,7 +37,7 @@ self.addEventListener('activate', event => {
             return caches.delete(cacheName);
           }
         })
-      );
+      ).then(() => self.clients.claim());
     })
   );
 });
