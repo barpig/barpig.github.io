@@ -41,27 +41,30 @@
 				}
 			}
 			window.tv_applied_studies = initialStudies;
+			window.ema_val = urlParams.get('ema') || localStorage.getItem('tv_ema_val') || "21";
+			window.sma_val = urlParams.get('sma') || localStorage.getItem('tv_sma_val') || "200";
+
+			window.getStudiesConfig = function() {
+				return window.tv_applied_studies.map(s => {
+					if (s === "MAExp@tv-basicstudies") return { id: s, inputs: { length: parseInt(window.ema_val) } };
+					if (s === "MASimple@tv-basicstudies") return { id: s, inputs: { length: parseInt(window.sma_val) } };
+					return s;
+				});
+			}
 
 			window.updateURLParams = function() {
 				let params = new URLSearchParams(window.location.search);
 				params.set('interval', window.tv_interval);
 				params.set('style', window.tv_style);
 				params.set('studies', window.tv_applied_studies.join(','));
+				params.set('ema', window.ema_val);
+				params.set('sma', window.sma_val);
 				window.history.replaceState({}, '', `${window.location.pathname}?${params.toString()}${window.location.hash}`);
 			}
 
 			window.tv_refresh = function() {
-				window.tv_charts.forEach(function(e) {
-				  e.options.interval = window.tv_interval;
-
-				  if( e.options.style != '3' ) { 
-				  	e.options.style = window.tv_style;
-				  }
-				  e.options.studies = window.tv_applied_studies;
-				  e.options.hide_legend = true;
-					
-				  e.reload();
-				});	
+				// Re-initialize all charts with new settings from URL/LocalStorage
+				window.location.reload();
 			}
 			
 			window.setInterval = function(val) {
@@ -86,6 +89,10 @@
 			}
 			
 			window.tv_saveAndRefresh = function() {
+				window.ema_val = document.getElementById('ema-val').value;
+				window.sma_val = document.getElementById('sma-val').value;
+				localStorage.setItem('tv_ema_val', window.ema_val);
+				localStorage.setItem('tv_sma_val', window.sma_val);
 				localStorage.setItem('tv_applied_studies', JSON.stringify(window.tv_applied_studies));
 				window.updateURLParams();
 				window.tv_refresh();
@@ -108,6 +115,8 @@
 			}
 
 			window.init = function() {
+				if (document.getElementById('ema-val')) document.getElementById('ema-val').value = window.ema_val;
+				if (document.getElementById('sma-val')) document.getElementById('sma-val').value = window.sma_val;
 				// Initialize indicators from existing chart state
 				window.updateIndicatorUI();
 				window.updateActiveState(null, window.tv_interval, 'interval');
@@ -318,6 +327,15 @@ window.updateIndicatorUI = function() {
     border: 1px solid #41848F;
 }
 
+.indicator-input {
+	width: 50px;
+	background: #0A1C28;
+	border: 1px solid #41848F;
+	color: #EEE9D1;
+	padding: 1px 4px;
+	font-size: 11px;
+	margin-left: 8px;
+}
 		</style>
 		<!-- Google Tag Manager -->
 		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -357,8 +375,14 @@ window.updateIndicatorUI = function() {
 						<div class="dropdown">
 							<button onclick="myFunction()" class="dropbtn">Add 2 Indicators ▾</button>
 							<div id="myDropdown" class="dropdown-content">
-								<div class="indicator-row"><a href="#" data-study="MAExp@tv-basicstudies" onclick="window.toggleIndicator('MAExp@tv-basicstudies')">EMA (21/etc)</a></div>
-								<div class="indicator-row"><a href="#" data-study="MASimple@tv-basicstudies" onclick="window.toggleIndicator('MASimple@tv-basicstudies')">SMA (200/etc)</a></div>
+								<div class="indicator-row">
+									<a href="#" data-study="MAExp@tv-basicstudies" onclick="window.toggleIndicator('MAExp@tv-basicstudies')">EMA</a>
+									<input type="number" id="ema-val" class="indicator-input" onchange="window.tv_saveAndRefresh()" onclick="event.stopPropagation()">
+								</div>
+								<div class="indicator-row">
+									<a href="#" data-study="MASimple@tv-basicstudies" onclick="window.toggleIndicator('MASimple@tv-basicstudies')">SMA</a>
+									<input type="number" id="sma-val" class="indicator-input" onchange="window.tv_saveAndRefresh()" onclick="event.stopPropagation()">
+								</div>
 								<div class="indicator-row"><a href="#" data-study="VWAP@tv-basicstudies" onclick="window.toggleIndicator('VWAP@tv-basicstudies')">VWAP</a></div>
 								<div class="indicator-row"><a href="#" data-study="AverageTrueRange@tv-basicstudies" onclick="window.toggleIndicator('AverageTrueRange@tv-basicstudies')">ATR</a></div>
 								<div class="indicator-row"><a href="#" data-study="RSI@tv-basicstudies" onclick="window.toggleIndicator('RSI@tv-basicstudies')">RSI</a></div>
@@ -402,7 +426,7 @@ window.updateIndicatorUI = function() {
 						  "hide_top_toolbar": true,
 						  "allow_symbol_change": true,
 						  "hide_volume": true,
-						  "studies": window.tv_applied_studies,
+						  "studies": window.getStudiesConfig(),
 						  "save_image": false,
 						  "hideideas": true
 						}));
@@ -426,7 +450,7 @@ window.updateIndicatorUI = function() {
 						  "hide_top_toolbar": true,
 						  "allow_symbol_change": true,
 						  "hide_volume": true,
-						  "studies": window.tv_applied_studies,
+						  "studies": window.getStudiesConfig(),
 						  "save_image": false,
 						  "hideideas": true
 						}));
@@ -450,7 +474,7 @@ window.updateIndicatorUI = function() {
 						  "hide_top_toolbar": true,
 						  "allow_symbol_change": true,
 						  "hide_volume": true,
-						  "studies": window.tv_applied_studies,
+						  "studies": window.getStudiesConfig(),
 						  "save_image": false,
 						  "hideideas": true
 						}));
@@ -474,7 +498,7 @@ window.updateIndicatorUI = function() {
 						  "hide_top_toolbar": true,
 						  "allow_symbol_change": true,
 						  "hide_volume": true,
-						  "studies": window.tv_applied_studies,
+						  "studies": window.getStudiesConfig(),
 						  "save_image": false,
 						  "hideideas": true
 						}));
@@ -498,7 +522,7 @@ window.updateIndicatorUI = function() {
 						  "hide_top_toolbar": true,
 						  "allow_symbol_change": true,
 						  "hide_volume": true,
-						  "studies": window.tv_applied_studies,
+						  "studies": window.getStudiesConfig(),
 						  "save_image": false,
 						  "hideideas": true
 						}));
@@ -522,7 +546,7 @@ window.updateIndicatorUI = function() {
 						  "hide_top_toolbar": true,
 						  "allow_symbol_change": true,
 						  "hide_volume": true,
-						  "studies": window.tv_applied_studies,
+						  "studies": window.getStudiesConfig(),
 						  "save_image": false,
 						  "hideideas": true
 						}));
@@ -546,7 +570,7 @@ window.updateIndicatorUI = function() {
 						  "hide_top_toolbar": true,
 						  "allow_symbol_change": true,
 						  "hide_volume": true,
-						  "studies": window.tv_applied_studies,
+						  "studies": window.getStudiesConfig(),
 						  "save_image": false,
 						  "hideideas": true
 						}));
@@ -570,7 +594,7 @@ window.updateIndicatorUI = function() {
 						  "hide_top_toolbar": true,
 						  "allow_symbol_change": true,
 						  "hide_volume": true,
-						  "studies": window.tv_applied_studies,
+						  "studies": window.getStudiesConfig(),
 						  "save_image": false,
 						  "hideideas": true
 						}));
@@ -594,7 +618,7 @@ window.updateIndicatorUI = function() {
 						  "hide_top_toolbar": true,
 						  "allow_symbol_change": true,
 						  "hide_volume": true,
-						  "studies": window.tv_applied_studies,
+						  "studies": window.getStudiesConfig(),
 						  "save_image": false,
 						  "hideideas": true
 						}));
@@ -618,7 +642,7 @@ window.updateIndicatorUI = function() {
 						  "hide_top_toolbar": true,
 						  "allow_symbol_change": true,
 						  "hide_volume": true,
-						  "studies": window.tv_applied_studies,
+						  "studies": window.getStudiesConfig(),
 						  "save_image": false,
 						  "hideideas": true
 						}));
@@ -642,7 +666,7 @@ window.updateIndicatorUI = function() {
 						  "hide_top_toolbar": true,
 						  "allow_symbol_change": true,
 						  "hide_volume": true,
-						  "studies": window.tv_applied_studies,
+						  "studies": window.getStudiesConfig(),
 						  "save_image": false,
 						  "hideideas": true
 						}));
@@ -666,7 +690,7 @@ window.updateIndicatorUI = function() {
 						  "hide_top_toolbar": true,
 						  "allow_symbol_change": true,
 						  "hide_volume": true,
-						  "studies": window.tv_applied_studies,
+						  "studies": window.getStudiesConfig(),
 						  "save_image": false,
 						  "hideideas": true
 						}));

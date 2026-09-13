@@ -1,4 +1,4 @@
-const CACHE_NAME = 'rendo-charts-v1';
+const CACHE_NAME = 'rendo-charts-v2';
 const urlsToCache = [
   '/',
   '/index.html'
@@ -16,7 +16,7 @@ self.addEventListener('install', event => {
 
 self.addEventListener('fetch', event => {
   event.respondWith(
-    caches.match(event.request, { ignoreSearch: true })
+    caches.match(event.request)
       .then(response => {
         // Return cached response if found, otherwise fetch from network
         return response || fetch(event.request).catch(() => {
